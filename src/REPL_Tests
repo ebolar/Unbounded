@@ -1,0 +1,83 @@
+# -------------------------------
+# REPL_Tests
+# -------------------------------
+# Test cases for the REPL interpreter
+#
+# Comments
+# --------
+# Trailing comments
+asdf# Trailing comments
+asdf # Trailing comments
+asdf	# Trailing comments - tab
+asdf	  # Trailing comments - mixed
+asdf #
+# Empty line
+
+# Expressions
+# -----------
+ # Null expression
+# Simple expression
+abcde
+# Whitespace removal
+a b c d e
+a	b	c	d	e
+a_b_c_d_e
+a b	 c_d_e
+a _	bcde
+# Nested expression
+(abc)
+(abc)de
+abc(de(fg))
+abc(de(fg))hijk
+abc(de(fgh)i)jk
+a(b(c(d(e(f(g))))))
+# Application
+abc(def)(gh)ijk
+III # identity of identity of identity
+(abc)(def)I
+(abc)J(def)
+# Syntax error - Unexpected parenthesis error 
+abc)
+abc)de
+abc(de))fg
+# Syntax error - Missing parenthesis
+(abc
+abc(def(gh)ijk
+abc(def(gh)
+
+# Functions
+# ---------
+# Simple functions
+?abc.de
+&abc.de
+\abc.de
+# Standard functions
+?x.x
+&x.x
+\x.x
+?f.(?x.f(xx))(?x.f(xx))
+&f.(&x.f(xx))(&x.f(xx))
+\f.(\x.f(xx))(\x.f(xx))
+&f.(?x.f(xx))(\x.f(xx))
+# Unbounded variables
+?x.xy
+?xy.x
+# Warning - Null function
+?abc
+?
+?(abc)
+# Syntax error - Missing lambda
+abc.de
+
+# Synonyms
+# --------
+# Assignment - dummy values
+A=
+B=abcdef
+C=?abc.defg
+D=# Delete D
+E= # Delete E
+F=(abc)def
+# Assignment - standard functions
+I=?x.x
+Y=?f.(?x.f(xx))(?x.f(xx))
