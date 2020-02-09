@@ -1,0 +1,747 @@
+       __
+       \ \
+  ___   \ \
+  ___    . \
+  ___   / ^ \
+       /_/ \_\
+
+Unbounded, a Lambda Calculus interpreter
+
+Usage: unbounded [-h] [-q | -v] [-e 'expression']
+
+Default operation is to evaluate expressions in an interactive REPL.  End of input is system defined.  
+
+  -h                prints this help message.
+  -q                run quietly.
+  -v                verbose tracing.
+  -e 'expression'   evaluate the expression in non-interactive mode.
+
+ 1 Unbounded> 
+. [# -------------------------------                                               ]
+... #
+ 2 Unbounded> 
+. [# REPL_Tests                                                                    ]
+... #
+ 3 Unbounded> 
+. [# -------------------------------                                               ]
+... #
+ 4 Unbounded> 
+. [# Test cases for the REPL interpreter                                           ]
+... #
+ 5 Unbounded> 
+. [#                                                                               ]
+... #
+ 6 Unbounded> 
+. [# Comments                                                                      ]
+... #
+ 7 Unbounded> 
+. [# --------                                                                      ]
+... #
+ 8 Unbounded> 
+. [# Trailing comments                                                             ]
+... #
+ 9 Unbounded> 
+. [asdf# Trailing comments                                                         ]
+... Variable: a
+... Variable: s
+... Variable: d
+... Variable: f
+... #
+ 10 Unbounded> 
+. [asdf # Trailing comments                                                        ]
+... Variable: a
+... Variable: s
+... Variable: d
+... Variable: f
+... #
+ 11 Unbounded> 
+. [asdf	# Trailing comments - tab                                                  ]
+... Variable: a
+... Variable: s
+... Variable: d
+... Variable: f
+LAMBDA.SYNTAX_ERROR: Invalid character in asdf	# Trailing comments - tab
+ 12 Unbounded> 
+. [asdf	  # Trailing comments - mixed                                              ]
+... Variable: a
+... Variable: s
+... Variable: d
+... Variable: f
+LAMBDA.SYNTAX_ERROR: Invalid character in asdf	  # Trailing comments - mixed
+ 13 Unbounded> 
+. [asdf #                                                                          ]
+... Variable: a
+... Variable: s
+... Variable: d
+... Variable: f
+... #
+ 14 Unbounded> 
+. [# Empty line                                                                    ]
+... #
+ 15 Unbounded> 
+. [                                                                                ]
+ 16 Unbounded> 
+. [# Buffer overflow                                                               ]
+... #
+ 17 Unbounded> 
+. [abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz]
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+... Variable: f
+... Variable: g
+... Variable: h
+... Variable: i
+... Variable: j
+... Variable: k
+... Variable: l
+... Variable: m
+... Variable: n
+... Variable: o
+... Variable: p
+... Variable: q
+... Variable: r
+... Variable: s
+... Variable: t
+... Variable: u
+... Variable: v
+... Variable: w
+... Variable: x
+... Variable: y
+... Variable: z
+... Synonym: A
+... Synonym: B
+... Synonym: C
+... Synonym: D
+... Synonym: E
+... Synonym: F
+... Synonym: G
+... Synonym: H
+... Synonym: I
+... Synonym: J
+... Synonym: K
+... Synonym: L
+... Synonym: M
+... Synonym: N
+... Synonym: O
+... Synonym: P
+... Synonym: Q
+... Synonym: R
+... Synonym: S
+... Synonym: T
+... Synonym: U
+... Synonym: V
+... Synonym: W
+... Synonym: X
+... Synonym: Y
+... Synonym: Z
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+... Variable: f
+... Variable: g
+... Variable: h
+... Variable: i
+... Variable: j
+... Variable: k
+... Variable: l
+... Variable: m
+... Variable: n
+... Variable: o
+... Variable: p
+... Variable: q
+... Variable: r
+... Variable: s
+... Variable: t
+... Variable: u
+... Variable: v
+... Variable: w
+... Variable: x
+... Variable: y
+... Variable: z
+ 18 Unbounded> 
+. [# Expressions                                                                   ]
+... #
+ 19 Unbounded> 
+. [# -----------                                                                   ]
+... #
+ 20 Unbounded> 
+. [ # Null expression                                                              ]
+... #
+ 21 Unbounded> 
+. [# Simple expression                                                             ]
+... #
+ 22 Unbounded> 
+. [abcde                                                                           ]
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+ 23 Unbounded> 
+. [# Whitespace removal                                                            ]
+... #
+ 24 Unbounded> 
+. [a b c d e                                                                       ]
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+ 25 Unbounded> 
+. [a	b	c	d	e                                                                       ]
+... Variable: a
+LAMBDA.SYNTAX_ERROR: Invalid character in a	b	c	d	e
+ 26 Unbounded> 
+. [a_b_c_d_e                                                                       ]
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+ 27 Unbounded> 
+. [a b	 c_d_e                                                                      ]
+... Variable: a
+... Variable: b
+LAMBDA.SYNTAX_ERROR: Invalid character in a b	 c_d_e
+ 28 Unbounded> 
+. [a _	bcde                                                                        ]
+... Variable: a
+LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
+ 29 Unbounded> 
+. [# Nested expression                                                             ]
+... #
+ 30 Unbounded> 
+. [(abc)                                                                           ]
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... )
+ 31 Unbounded> 
+. [(abc)de                                                                         ]
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... )
+... Variable: d
+... Variable: e
+ 32 Unbounded> 
+. [abc(de(fg))                                                                     ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  (
+...   Variable: f
+...   Variable: g
+...  )
+... )
+ 33 Unbounded> 
+. [abc(de(fg))hijk                                                                 ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  (
+...   Variable: f
+...   Variable: g
+...  )
+... )
+... Variable: h
+... Variable: i
+... Variable: j
+... Variable: k
+ 34 Unbounded> 
+. [abc(de(fgh)i)jk                                                                 ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  (
+...   Variable: f
+...   Variable: g
+...   Variable: h
+...  )
+...  Variable: i
+... )
+... Variable: j
+... Variable: k
+ 35 Unbounded> 
+. [a(b(c(d(e(f(g))))))                                                             ]
+... Variable: a
+... (
+...  Variable: b
+...  (
+...   Variable: c
+...   (
+...    Variable: d
+...    (
+...     Variable: e
+...     (
+...      Variable: f
+...      (
+...       Variable: g
+...      )
+...     )
+...    )
+...   )
+...  )
+... )
+ 36 Unbounded> 
+. [# Application                                                                   ]
+... #
+ 37 Unbounded> 
+. [abc(def)(gh)ijk                                                                 ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  Variable: f
+... )
+... (
+...  Variable: g
+...  Variable: h
+... )
+... Variable: i
+... Variable: j
+... Variable: k
+ 38 Unbounded> 
+. [III # identity of identity of identity                                          ]
+... Synonym: I
+... Synonym: I
+... Synonym: I
+... #
+ 39 Unbounded> 
+. [(abc)(def)I                                                                     ]
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... )
+... (
+...  Variable: d
+...  Variable: e
+...  Variable: f
+... )
+... Synonym: I
+ 40 Unbounded> 
+. [(abc)J(def)                                                                     ]
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... )
+... Synonym: J
+... (
+...  Variable: d
+...  Variable: e
+...  Variable: f
+... )
+ 41 Unbounded> 
+. [# Syntax error - Unexpected parenthesis error                                   ]
+... #
+ 42 Unbounded> 
+. [abc)                                                                            ]
+... Variable: a
+... Variable: b
+... Variable: c
+LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)
+ 43 Unbounded> 
+. [abc)de                                                                          ]
+... Variable: a
+... Variable: b
+... Variable: c
+LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)de
+ 44 Unbounded> 
+. [abc(de))fg                                                                      ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+... )
+LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc(de))fg
+ 45 Unbounded> 
+. [# Syntax error - Missing parenthesis                                            ]
+... #
+ 46 Unbounded> 
+. [(abc                                                                            ]
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+LAMBDA.SYNTAX_ERROR: Missing ')' in (abc
+ 47 Unbounded> 
+. [abc(def(gh)ijk                                                                  ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  Variable: f
+...  (
+...   Variable: g
+...   Variable: h
+...  )
+...  Variable: i
+...  Variable: j
+...  Variable: k
+LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)ijk
+ 48 Unbounded> 
+. [abc(def(gh)                                                                     ]
+... Variable: a
+... Variable: b
+... Variable: c
+... (
+...  Variable: d
+...  Variable: e
+...  Variable: f
+...  (
+...   Variable: g
+...   Variable: h
+...  )
+LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
+ 49 Unbounded> 
+. [                                                                                ]
+ 50 Unbounded> 
+. [# Functions                                                                     ]
+... #
+ 51 Unbounded> 
+. [# ---------                                                                     ]
+... #
+ 52 Unbounded> 
+. [# Simple functions                                                              ]
+... #
+ 53 Unbounded> 
+. [?abc.de                                                                         ]
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... Function - Expression
+...  Variable: d
+...  Variable: e
+ 54 Unbounded> 
+. [&abc.de                                                                         ]
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... Function - Expression
+...  Variable: d
+...  Variable: e
+ 55 Unbounded> 
+. [\abc.de                                                                         ]
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... Function - Expression
+...  Variable: d
+...  Variable: e
+ 56 Unbounded> 
+. [# Standard functions                                                            ]
+... #
+ 57 Unbounded> 
+. [?x.x                                                                            ]
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+ 58 Unbounded> 
+. [&x.x                                                                            ]
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+ 59 Unbounded> 
+. [\x.x                                                                            ]
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+ 60 Unbounded> 
+. [?f.(?x.f(xx))(?x.f(xx))                                                         ]
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   )
+...   (
+...    Function - Variables
+...     Variable: x
+...    Function - Expression
+...     Variable: f
+...     (
+...      Variable: x
+...      Variable: x
+...     )
+...    )
+ 61 Unbounded> 
+. [&f.(&x.f(xx))(&x.f(xx))                                                         ]
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   )
+...   (
+...    Function - Variables
+...     Variable: x
+...    Function - Expression
+...     Variable: f
+...     (
+...      Variable: x
+...      Variable: x
+...     )
+...    )
+ 62 Unbounded> 
+. [\f.(\x.f(xx))(\x.f(xx))                                                         ]
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   )
+...   (
+...    Function - Variables
+...     Variable: x
+...    Function - Expression
+...     Variable: f
+...     (
+...      Variable: x
+...      Variable: x
+...     )
+...    )
+ 63 Unbounded> 
+. [&f.(?x.f(xx))(\x.f(xx))                                                         ]
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   )
+...   (
+...    Function - Variables
+...     Variable: x
+...    Function - Expression
+...     Variable: f
+...     (
+...      Variable: x
+...      Variable: x
+...     )
+...    )
+ 64 Unbounded> 
+. [# Unbounded variables                                                           ]
+... #
+ 65 Unbounded> 
+. [?x.xy                                                                           ]
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+...  Variable: y
+ 66 Unbounded> 
+. [?xy.x                                                                           ]
+... Function - Variables
+...  Variable: x
+...  Variable: y
+... Function - Expression
+...  Variable: x
+ 67 Unbounded> 
+. [# Warning - Null function                                                       ]
+... #
+ 68 Unbounded> 
+. [?abc                                                                            ]
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?abc
+ 69 Unbounded> 
+. [?                                                                               ]
+... Function - Variables
+... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?
+ 70 Unbounded> 
+. [?(abc)                                                                          ]
+... Function - Variables
+...  (
+...   Variable: a
+...   Variable: b
+...   Variable: c
+...  )
+... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?(abc)
+ 71 Unbounded> 
+. [# Syntax error - Missing lambda                                                 ]
+... #
+ 72 Unbounded> 
+. [abc.de                                                                          ]
+... Variable: a
+... Variable: b
+... Variable: c
+... LAMBDA.SYNTAX_ERROR: Unexpected '.' - no function declared in abc.de
+ 73 Unbounded> 
+. [                                                                                ]
+ 74 Unbounded> 
+. [# Synonyms                                                                      ]
+... #
+ 75 Unbounded> 
+. [# --------                                                                      ]
+... #
+ 76 Unbounded> 
+. [# Assignment - dummy values                                                     ]
+... #
+ 77 Unbounded> 
+. [A=                                                                              ]
+... Synonym: A
+... = 
+ 78 Unbounded> 
+. [B=abcdef                                                                        ]
+... Synonym: B
+... = 
+... Variable: a
+... Variable: b
+... Variable: c
+... Variable: d
+... Variable: e
+... Variable: f
+ 79 Unbounded> 
+. [C=?abc.defg                                                                     ]
+... Synonym: C
+... = 
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... Function - Expression
+...  Variable: d
+...  Variable: e
+...  Variable: f
+...  Variable: g
+ 80 Unbounded> 
+. [D=# Delete D                                                                    ]
+... Synonym: D
+... = 
+... #
+ 81 Unbounded> 
+. [E= # Delete E                                                                   ]
+... Synonym: E
+... = 
+... #
+ 82 Unbounded> 
+. [F=(abc)def                                                                      ]
+... Synonym: F
+... = 
+... (
+...  Variable: a
+...  Variable: b
+...  Variable: c
+... )
+... Variable: d
+... Variable: e
+... Variable: f
+ 83 Unbounded> 
+. [# Assignment - standard functions                                               ]
+... #
+ 84 Unbounded> 
+. [I=?x.x                                                                          ]
+... Synonym: I
+... = 
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+ 85 Unbounded> 
+. [Y=?f.(?x.f(xx))(?x.f(xx))                                                       ]
+... Synonym: Y
+... = 
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   )
+...   (
+...    Function - Variables
+...     Variable: x
+...    Function - Expression
+...     Variable: f
+...     (
+...      Variable: x
+...      Variable: x
+...     )
+...    )
+ 86 Unbounded> 
+. [                                                                                ]
+ 87 Unbounded> 
+. [# Commands                                                                      ]
+... #
+ 88 Unbounded> 
+. [# --------                                                                      ]
+... #
+ 89 Unbounded> 
+. [TRACE-ON                                                                        ]
+. Trace on
+ 90 Unbounded> 
+. [TRACE-OFF                                                                       ]
+. Trace off
+ 91 Unbounded> 
+. [LS                                                                              ]
+. List saved expressions
+ 92 Unbounded> 
+. [QUIT                                                                            ]
+. Exit
+
+Bye
