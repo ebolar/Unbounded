@@ -1,15 +1,12 @@
-run: main
-	./main
+run: unbounded
+	./unbounded
 
-main: main.adb lambda.adb lambda.ads
-	gnat compile main lambda
-	gnat bind main lambda
-	gnat link main
+unbounded: unbounded.adb lambda.adb lambda.ads
+	gnatmake unbounded
 
-test: main
-	cat REPL_Tests | ./main
+test: unbounded
+	cat REPL_Tests | ./unbounded > REPL_Tests.out
+	diff REPL_Tests.out REPL_Tests.ref
 
-fred: fred.adb
-	gnat compile fred
-	gnat bind fred
-	gnat link fred
+clean: 
+	rm *.o *.ali

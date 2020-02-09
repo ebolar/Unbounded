@@ -13,6 +13,8 @@ asdf	  # Trailing comments - mixed
 asdf #
 # Empty line
 
+# Buffer overflow
+abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ
 # Expressions
 # -----------
  # Null expression
@@ -81,3 +83,11 @@ F=(abc)def
 # Assignment - standard functions
 I=?x.x
 Y=?f.(?x.f(xx))(?x.f(xx))
+
+# Commands
+# --------
+TRACE-ON
+TRACE-OFF
+LS
+QUIT
+
