@@ -12,6 +12,8 @@ with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 with Ada.Strings.Unbounded;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.IO_Exceptions;
+with Ada.Containers; use Ada.Containers;
+with Ada.Containers.Multiway_Trees;
 
 Package body Lambda is
 
@@ -19,7 +21,7 @@ Package body Lambda is
 
    -- The Read|Evaulate|Print Loop
    procedure REPL is
-      I : Instructions;
+      I : Instructions; -- := Empty_Tree;
       Prompt : constant string := "Unbounded> ";
 
       S : Statement (1..Max_Statement_Length);
@@ -77,6 +79,7 @@ Package body Lambda is
 
    -- A simple Lambda parser
    -- ----------------------
+   --
    -- Ignore spaces.
    --
    -- Separate processing required for parsing:
@@ -115,25 +118,6 @@ Package body Lambda is
       return False;
    end parse_Commands;
 
-   -- Not sure I need this - finish parse_Expression first
-   function parse_Variables( S: Statement ) return Instructions is
-      Default : Instructions;
-
-      E : Character;
-   begin
-      for I in S'Range loop
-         E := S(I);
-         case E is
-            when Name_Type => Put_Line ("... Variable: " & E);
-            when '_' | ' ' => null;
-            when others => raise Syntax_Error with "Invalid character - expecting variable";
-         end case;
-      end loop;
-
-      return Default;
-   end parse_Variables;
-
-
    function parse_Expression( S: Statement ) return Instructions is
       Default : Instructions;
       Temp : Instructions;
@@ -142,6 +126,9 @@ Package body Lambda is
 
       Level : Natural := 0;	-- One day I want WONDER:NATURAL;
       F_Level : Natural := 0;
+
+      type Parse_Mode is (L_Null, L_Expression, L_Function);
+      Parsing : Parse_Mode := L_Null;
 
       procedure indent( I : Natural ) is
          L : Natural := 0;
@@ -163,21 +150,9 @@ Package body Lambda is
       -- : [_| ] : Spaces.  Ignore these.
       --
 
-      -- TBD Recursive tokeniser - split the expression into
-      -- TBD * Strings of variables
-      -- TBD * Functions
-      -- TBD * Sub Expressions containing Functions and/or Variables and/or Synonyms
-      -- TBD * Comments
-      -- TBD * Synonym definitions
-      -- TBD * Synonyms
-      -- TBD
-      -- TBD Then parse the tokens to create instructions for each.
-      -- TBD
-      -- TBD Separators are '(' ')' '=' '\' '?' '&' '.'
-      -- TBD
-
       --
       -- Iterative parser
+      -- (OK a recursive parser would be simpler)
       for C in S'Range loop
          E := S(C);
          case E is
@@ -202,11 +177,14 @@ Package body Lambda is
                Level := Level + 1;
                F_Level := F_Level + 1;
 
-               -- look for the .
-               -- parse the string returning I into Function.Variables
-               -- look for the end of the function expression
-               -- parse the string returning I into Function.Expression
-               -- Must contain a .  If not then Syntax error
+               -- * look for the .
+               -- * Parse the string returning I into Function.Variables
+               -- * Look for the end of the function expression.  Rule is
+               -- to take the longest possible expression, ie either EOL
+               -- or closing ).
+               -- * Parse the string returning I into Function.Expression
+               -- * Must contain a .  If not then Syntax error
+               -- ??? Would up/down functions be useful?
             when '.' =>
                begin
                   Put ("... " );
@@ -222,6 +200,8 @@ Package body Lambda is
                Indent (Level);
                Put_Line("(");
                Level := Level + 1;
+               Parsing := L_Expression;
+
 	       -- parse the rest of the line as level +1.
 	       -- Recursive overflow exception
             when ')' =>
