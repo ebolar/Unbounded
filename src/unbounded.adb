@@ -2,16 +2,24 @@
 -- ----------------------------------
 -- Parses and reduces Lamdba Calculus statements.
 --
--- The syntax roughly corresponds to what would be written in a text on the
+-- The syntax roughly corresponds to what could be written in a text on the
 -- Lambda Calculus.  
 -- * Spaces and underscores are ignored
 -- * Single letter variable names 'a'..'z'
 -- * Single letter Synonyms 'A'..'Z'.
 -- * Expressions can be nested with parentheses '('|')'
 -- * Functions start with '?', '/' or '&', eg ?<name>.<expression>
--- * ?abc.<expression> is eqivalent to ?a.(?b.(?c.<expression>)))
 -- * # The rest of the line is a comment
 -- * any other character generates a SYNTAX_ERROR
+-- 
+-- Conventions 
+-- * Expressions are associative from left to right.
+--   ABC == ((AB)C)
+-- * ?abc.<expression> is eqivalent to ?a.(?b.(?c.<expression>)))
+-- * Longest valid expression wins.  Function expresions go to the end of scope.
+--   ?abc.ABC == ?abc.((AB)C)
+--   ?abc.(AB)C == ?abc.((AB)C)
+--   (?abc.AB)C == (?abc.(AB))(C) ie C applied to (?abc.AB)
 --
 -- The REPL also allows
 -- * <synonym>=<expression>  - declare or replace a synonym
@@ -22,13 +30,9 @@
 --
 -- REPL commands are not case sensitive
 -- 
--- main.adb contains the user interface, including
--- * Commandline argument interpreter
--- * REPL
--- * Unit testing is performed via the make script.  
+-- Unit testing is performed via the make script.  
 --
 -- TBD
--- * General cleanup - what is the simplest way to do this?
 -- * Save/Restore synonyms to a file
 --
 

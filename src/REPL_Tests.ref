@@ -16,75 +16,72 @@ Default operation is to evaluate expressions in an interactive REPL.  End of inp
   -v                verbose tracing.
   -e 'expression'   evaluate the expression in non-interactive mode.
 
- 1 Unbounded> 
-. [# -------------------------------                                               ]
+Unbounded> 
 ... #
- 2 Unbounded> 
-. [# REPL_Tests                                                                    ]
+-> 
+Unbounded> 
 ... #
- 3 Unbounded> 
-. [# -------------------------------                                               ]
+-> 
+Unbounded> 
 ... #
- 4 Unbounded> 
-. [# Test cases for the REPL interpreter                                           ]
+-> 
+Unbounded> 
 ... #
- 5 Unbounded> 
-. [#                                                                               ]
+-> 
+Unbounded> 
 ... #
- 6 Unbounded> 
-. [# Comments                                                                      ]
+-> 
+Unbounded> 
 ... #
- 7 Unbounded> 
-. [# --------                                                                      ]
+-> 
+Unbounded> 
 ... #
- 8 Unbounded> 
-. [# Trailing comments                                                             ]
+-> 
+Unbounded> 
 ... #
- 9 Unbounded> 
-. [asdf# Trailing comments                                                         ]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: s
 ... Variable: d
 ... Variable: f
 ... #
- 10 Unbounded> 
-. [asdf # Trailing comments                                                        ]
+-> (asdf)
+Unbounded> 
 ... Variable: a
 ... Variable: s
 ... Variable: d
 ... Variable: f
 ... #
- 11 Unbounded> 
-. [asdf	# Trailing comments - tab                                                  ]
+-> (asdf)
+Unbounded> 
 ... Variable: a
 ... Variable: s
 ... Variable: d
 ... Variable: f
 LAMBDA.SYNTAX_ERROR: Invalid character in asdf	# Trailing comments - tab
- 12 Unbounded> 
-. [asdf	  # Trailing comments - mixed                                              ]
+Unbounded> 
 ... Variable: a
 ... Variable: s
 ... Variable: d
 ... Variable: f
 LAMBDA.SYNTAX_ERROR: Invalid character in asdf	  # Trailing comments - mixed
- 13 Unbounded> 
-. [asdf #                                                                          ]
+Unbounded> 
 ... Variable: a
 ... Variable: s
 ... Variable: d
 ... Variable: f
 ... #
- 14 Unbounded> 
-. [# Empty line                                                                    ]
+-> (asdf)
+Unbounded> 
 ... #
- 15 Unbounded> 
-. [                                                                                ]
- 16 Unbounded> 
-. [# Buffer overflow                                                               ]
+-> 
+Unbounded> 
+-> 
+Unbounded> 
 ... #
- 17 Unbounded> 
-. [abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -163,67 +160,64 @@ LAMBDA.SYNTAX_ERROR: Invalid character in asdf	  # Trailing comments - mixed
 ... Variable: x
 ... Variable: y
 ... Variable: z
- 18 Unbounded> 
-. [# Expressions                                                                   ]
+-> (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
+Unbounded> 
 ... #
- 19 Unbounded> 
-. [# -----------                                                                   ]
+-> 
+Unbounded> 
 ... #
- 20 Unbounded> 
-. [ # Null expression                                                              ]
+-> 
+Unbounded> 
 ... #
- 21 Unbounded> 
-. [# Simple expression                                                             ]
+-> 
+Unbounded> 
 ... #
- 22 Unbounded> 
-. [abcde                                                                           ]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
 ... Variable: d
 ... Variable: e
- 23 Unbounded> 
-. [# Whitespace removal                                                            ]
+-> (abcde)
+Unbounded> 
 ... #
- 24 Unbounded> 
-. [a b c d e                                                                       ]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
 ... Variable: d
 ... Variable: e
- 25 Unbounded> 
-. [a	b	c	d	e                                                                       ]
+-> (abcde)
+Unbounded> 
 ... Variable: a
 LAMBDA.SYNTAX_ERROR: Invalid character in a	b	c	d	e
- 26 Unbounded> 
-. [a_b_c_d_e                                                                       ]
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
 ... Variable: d
 ... Variable: e
- 27 Unbounded> 
-. [a b	 c_d_e                                                                      ]
+-> (abcde)
+Unbounded> 
 ... Variable: a
 ... Variable: b
 LAMBDA.SYNTAX_ERROR: Invalid character in a b	 c_d_e
- 28 Unbounded> 
-. [a _	bcde                                                                        ]
+Unbounded> 
 ... Variable: a
 LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
- 29 Unbounded> 
-. [# Nested expression                                                             ]
+Unbounded> 
 ... #
- 30 Unbounded> 
-. [(abc)                                                                           ]
+-> 
+Unbounded> 
 ... (
 ...  Variable: a
 ...  Variable: b
 ...  Variable: c
 ... )
- 31 Unbounded> 
-. [(abc)de                                                                         ]
+-> (abc)
+Unbounded> 
 ... (
 ...  Variable: a
 ...  Variable: b
@@ -231,8 +225,8 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ... )
 ... Variable: d
 ... Variable: e
- 32 Unbounded> 
-. [abc(de(fg))                                                                     ]
+-> (abc)de
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -244,8 +238,8 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ...   Variable: g
 ...  )
 ... )
- 33 Unbounded> 
-. [abc(de(fg))hijk                                                                 ]
+-> (abc(de(fg)))
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -261,8 +255,8 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ... Variable: i
 ... Variable: j
 ... Variable: k
- 34 Unbounded> 
-. [abc(de(fgh)i)jk                                                                 ]
+-> (abc(de(fg))hijk)
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -278,8 +272,8 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ... )
 ... Variable: j
 ... Variable: k
- 35 Unbounded> 
-. [a(b(c(d(e(f(g))))))                                                             ]
+-> (abc(de(fgh)i)jk)
+Unbounded> 
 ... Variable: a
 ... (
 ...  Variable: b
@@ -299,11 +293,11 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ...   )
 ...  )
 ... )
- 36 Unbounded> 
-. [# Application                                                                   ]
+-> (a(b(c(d(e(f(g)))))))
+Unbounded> 
 ... #
- 37 Unbounded> 
-. [abc(def)(gh)ijk                                                                 ]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -319,14 +313,14 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ... Variable: i
 ... Variable: j
 ... Variable: k
- 38 Unbounded> 
-. [III # identity of identity of identity                                          ]
+-> (abc(def)(gh)ijk)
+Unbounded> 
 ... Synonym: I
 ... Synonym: I
 ... Synonym: I
 ... #
- 39 Unbounded> 
-. [(abc)(def)I                                                                     ]
+-> (III)
+Unbounded> 
 ... (
 ...  Variable: a
 ...  Variable: b
@@ -338,8 +332,8 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ...  Variable: f
 ... )
 ... Synonym: I
- 40 Unbounded> 
-. [(abc)J(def)                                                                     ]
+-> (abc)(def)I
+Unbounded> 
 ... (
 ...  Variable: a
 ...  Variable: b
@@ -351,23 +345,21 @@ LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 ...  Variable: e
 ...  Variable: f
 ... )
- 41 Unbounded> 
-. [# Syntax error - Unexpected parenthesis error                                   ]
+-> (abc)J(def)
+Unbounded> 
 ... #
- 42 Unbounded> 
-. [abc)                                                                            ]
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)
- 43 Unbounded> 
-. [abc)de                                                                          ]
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)de
- 44 Unbounded> 
-. [abc(de))fg                                                                      ]
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -376,18 +368,16 @@ LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)de
 ...  Variable: e
 ... )
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc(de))fg
- 45 Unbounded> 
-. [# Syntax error - Missing parenthesis                                            ]
+Unbounded> 
 ... #
- 46 Unbounded> 
-. [(abc                                                                            ]
+-> 
+Unbounded> 
 ... (
 ...  Variable: a
 ...  Variable: b
 ...  Variable: c
 LAMBDA.SYNTAX_ERROR: Missing ')' in (abc
- 47 Unbounded> 
-. [abc(def(gh)ijk                                                                  ]
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -403,8 +393,7 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in (abc
 ...  Variable: j
 ...  Variable: k
 LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)ijk
- 48 Unbounded> 
-. [abc(def(gh)                                                                     ]
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
@@ -417,19 +406,18 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)ijk
 ...   Variable: h
 ...  )
 LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
- 49 Unbounded> 
-. [                                                                                ]
- 50 Unbounded> 
-. [# Functions                                                                     ]
+Unbounded> 
+-> 
+Unbounded> 
 ... #
- 51 Unbounded> 
-. [# ---------                                                                     ]
+-> 
+Unbounded> 
 ... #
- 52 Unbounded> 
-. [# Simple functions                                                              ]
+-> 
+Unbounded> 
 ... #
- 53 Unbounded> 
-. [?abc.de                                                                         ]
+-> 
+Unbounded> 
 ... Function - Variables
 ...  Variable: a
 ...  Variable: b
@@ -437,8 +425,8 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ... Function - Expression
 ...  Variable: d
 ...  Variable: e
- 54 Unbounded> 
-. [&abc.de                                                                         ]
+-> (?abc.(de))
+Unbounded> 
 ... Function - Variables
 ...  Variable: a
 ...  Variable: b
@@ -446,8 +434,8 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ... Function - Expression
 ...  Variable: d
 ...  Variable: e
- 55 Unbounded> 
-. [\abc.de                                                                         ]
+-> (&abc.(de))
+Unbounded> 
 ... Function - Variables
 ...  Variable: a
 ...  Variable: b
@@ -455,29 +443,29 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ... Function - Expression
 ...  Variable: d
 ...  Variable: e
- 56 Unbounded> 
-. [# Standard functions                                                            ]
+-> (\abc.(de))
+Unbounded> 
 ... #
- 57 Unbounded> 
-. [?x.x                                                                            ]
+-> 
+Unbounded> 
 ... Function - Variables
 ...  Variable: x
 ... Function - Expression
 ...  Variable: x
- 58 Unbounded> 
-. [&x.x                                                                            ]
+-> (?x.(x))
+Unbounded> 
 ... Function - Variables
 ...  Variable: x
 ... Function - Expression
 ...  Variable: x
- 59 Unbounded> 
-. [\x.x                                                                            ]
+-> (&x.(x))
+Unbounded> 
 ... Function - Variables
 ...  Variable: x
 ... Function - Expression
 ...  Variable: x
- 60 Unbounded> 
-. [?f.(?x.f(xx))(?x.f(xx))                                                         ]
+-> (\x.(x))
+Unbounded> 
 ... Function - Variables
 ...  Variable: f
 ... Function - Expression
@@ -490,158 +478,157 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ...     Variable: x
 ...     Variable: x
 ...    )
-...   )
-...   (
-...    Function - Variables
-...     Variable: x
-...    Function - Expression
-...     Variable: f
-...     (
-...      Variable: x
-...      Variable: x
-...     )
-...    )
- 61 Unbounded> 
-. [&f.(&x.f(xx))(&x.f(xx))                                                         ]
-... Function - Variables
-...  Variable: f
-... Function - Expression
-...  (
-...   Function - Variables
-...    Variable: x
-...   Function - Expression
-...    Variable: f
-...    (
-...     Variable: x
-...     Variable: x
-...    )
-...   )
-...   (
-...    Function - Variables
-...     Variable: x
-...    Function - Expression
-...     Variable: f
-...     (
-...      Variable: x
-...      Variable: x
-...     )
-...    )
- 62 Unbounded> 
-. [\f.(\x.f(xx))(\x.f(xx))                                                         ]
-... Function - Variables
-...  Variable: f
-... Function - Expression
-...  (
-...   Function - Variables
-...    Variable: x
-...   Function - Expression
-...    Variable: f
-...    (
-...     Variable: x
-...     Variable: x
-...    )
-...   )
-...   (
-...    Function - Variables
-...     Variable: x
-...    Function - Expression
-...     Variable: f
-...     (
-...      Variable: x
-...      Variable: x
-...     )
-...    )
- 63 Unbounded> 
-. [&f.(?x.f(xx))(\x.f(xx))                                                         ]
-... Function - Variables
-...  Variable: f
-... Function - Expression
-...  (
-...   Function - Variables
-...    Variable: x
-...   Function - Expression
-...    Variable: f
-...    (
-...     Variable: x
-...     Variable: x
-...    )
-...   )
-...   (
-...    Function - Variables
-...     Variable: x
-...    Function - Expression
-...     Variable: f
-...     (
-...      Variable: x
-...      Variable: x
-...     )
-...    )
- 64 Unbounded> 
-. [# Unbounded variables                                                           ]
-... #
- 65 Unbounded> 
-. [?x.xy                                                                           ]
-... Function - Variables
-...  Variable: x
-... Function - Expression
-...  Variable: x
-...  Variable: y
- 66 Unbounded> 
-. [?xy.x                                                                           ]
-... Function - Variables
-...  Variable: x
-...  Variable: y
-... Function - Expression
-...  Variable: x
- 67 Unbounded> 
-. [# Warning - Null function                                                       ]
-... #
- 68 Unbounded> 
-. [?abc                                                                            ]
-... Function - Variables
-...  Variable: a
-...  Variable: b
-...  Variable: c
-... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?abc
- 69 Unbounded> 
-. [?                                                                               ]
-... Function - Variables
-... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?
- 70 Unbounded> 
-. [?(abc)                                                                          ]
-... Function - Variables
-...  (
-...   Variable: a
-...   Variable: b
-...   Variable: c
+...   .
 ...  )
-... LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?(abc)
- 71 Unbounded> 
-. [# Syntax error - Missing lambda                                                 ]
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+-> (?f.(?x.(f(xx)))(?x.(f(xx))))
+Unbounded> 
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+-> (&f.(&x.(f(xx)))(&x.(f(xx))))
+Unbounded> 
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+-> (\f.(\x.(f(xx)))(\x.(f(xx))))
+Unbounded> 
+... Function - Variables
+...  Variable: f
+... Function - Expression
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
+...     Variable: x
+...     Variable: x
+...    )
+...   .
+...  )
+-> (&f.(?x.(f(xx)))(\x.(f(xx))))
+Unbounded> 
 ... #
- 72 Unbounded> 
-. [abc.de                                                                          ]
+-> 
+Unbounded> 
+... Function - Variables
+...  Variable: x
+... Function - Expression
+...  Variable: x
+...  Variable: y
+-> (?x.(xy))
+Unbounded> 
+... Function - Variables
+...  Variable: x
+...  Variable: y
+... Function - Expression
+...  Variable: x
+-> (?xy.(x))
+Unbounded> 
+... #
+-> 
+Unbounded> 
+... Function - Variables
+...  Variable: a
+...  Variable: b
+...  Variable: c
+LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?abc
+Unbounded> 
+... Function - Variables
+LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?
+Unbounded> 
+... Function - Variables
+LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?(abc)
+Unbounded> 
+... #
+-> 
+Unbounded> 
 ... Variable: a
 ... Variable: b
 ... Variable: c
-... LAMBDA.SYNTAX_ERROR: Unexpected '.' - no function declared in abc.de
- 73 Unbounded> 
-. [                                                                                ]
- 74 Unbounded> 
-. [# Synonyms                                                                      ]
+LAMBDA.SYNTAX_ERROR: Unexpected '.' - no function declared in abc.de
+Unbounded> 
+-> 
+Unbounded> 
 ... #
- 75 Unbounded> 
-. [# --------                                                                      ]
+-> 
+Unbounded> 
 ... #
- 76 Unbounded> 
-. [# Assignment - dummy values                                                     ]
+-> 
+Unbounded> 
 ... #
- 77 Unbounded> 
-. [A=                                                                              ]
+-> 
+Unbounded> 
 ... Synonym: A
 ... = 
- 78 Unbounded> 
-. [B=abcdef                                                                        ]
+-> A=()
+Unbounded> 
 ... Synonym: B
 ... = 
 ... Variable: a
@@ -650,8 +637,8 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ... Variable: d
 ... Variable: e
 ... Variable: f
- 79 Unbounded> 
-. [C=?abc.defg                                                                     ]
+-> B=(abcdef)
+Unbounded> 
 ... Synonym: C
 ... = 
 ... Function - Variables
@@ -663,18 +650,18 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ...  Variable: e
 ...  Variable: f
 ...  Variable: g
- 80 Unbounded> 
-. [D=# Delete D                                                                    ]
+-> C=(?abc.(defg))
+Unbounded> 
 ... Synonym: D
 ... = 
 ... #
- 81 Unbounded> 
-. [E= # Delete E                                                                   ]
+-> D=()
+Unbounded> 
 ... Synonym: E
 ... = 
 ... #
- 82 Unbounded> 
-. [F=(abc)def                                                                      ]
+-> E=()
+Unbounded> 
 ... Synonym: F
 ... = 
 ... (
@@ -685,19 +672,59 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ... Variable: d
 ... Variable: e
 ... Variable: f
- 83 Unbounded> 
-. [# Assignment - standard functions                                               ]
+-> F=(abc)def
+Unbounded> 
+... Synonym: G
+... = 
+... Synonym: H
+-> G=(H)
+Unbounded> 
+... Synonym: I
+... = 
+... Variable: a
+... Variable: b
+... (
+...  Variable: c
+...  Variable: d
+... )
+-> I=(ab(cd))
+Unbounded> 
+... Synonym: J
+... = 
+... Variable: a
+... Variable: b
+... (
+...  Variable: c
+...  Variable: d
+... )
+... Variable: e
+-> J=(ab(cd)e)
+Unbounded> 
+... Synonym: K
+... = 
+... Variable: a
+... Variable: b
+... (
+...  Function - Variables
+...   Variable: c
+...  Function - Expression
+...   Variable: d
+...  .
+... )
+... Variable: e
+-> K=(ab(?c.(d))e)
+Unbounded> 
 ... #
- 84 Unbounded> 
-. [I=?x.x                                                                          ]
+-> 
+Unbounded> 
 ... Synonym: I
 ... = 
 ... Function - Variables
 ...  Variable: x
 ... Function - Expression
 ...  Variable: x
- 85 Unbounded> 
-. [Y=?f.(?x.f(xx))(?x.f(xx))                                                       ]
+-> I=(?x.(x))
+Unbounded> 
 ... Synonym: Y
 ... = 
 ... Function - Variables
@@ -712,36 +739,67 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 ...     Variable: x
 ...     Variable: x
 ...    )
-...   )
-...   (
-...    Function - Variables
+...   .
+...  )
+...  (
+...   Function - Variables
+...    Variable: x
+...   Function - Expression
+...    Variable: f
+...    (
 ...     Variable: x
-...    Function - Expression
-...     Variable: f
-...     (
-...      Variable: x
-...      Variable: x
-...     )
+...     Variable: x
 ...    )
- 86 Unbounded> 
-. [                                                                                ]
- 87 Unbounded> 
-. [# Commands                                                                      ]
+...   .
+...  )
+-> Y=(?f.(?x.(f(xx)))(?x.(f(xx))))
+Unbounded> 
 ... #
- 88 Unbounded> 
-. [# --------                                                                      ]
+-> 
+Unbounded> 
+... Synonym: A
+... Synonym: B
+... Synonym: C
+LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in ABC=abc
+Unbounded> 
+... Synonym: A
+... = 
+... Synonym: B
+LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in A=B=C
+Unbounded> 
+... Variable: a
+LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in a=bcd
+Unbounded> 
 ... #
- 89 Unbounded> 
-. [TRACE-ON                                                                        ]
-. Trace on
- 90 Unbounded> 
-. [TRACE-OFF                                                                       ]
-. Trace off
- 91 Unbounded> 
-. [LS                                                                              ]
+-> 
+Unbounded> 
+... Function - Variables
+...  Variable: x
+... Function - Expression
+PROGRAM_ERROR: Buffer overflow in ?x.
+Unbounded> 
+... #
+-> 
+Unbounded> 
+... #
+-> 
+Unbounded> 
 . List saved expressions
- 92 Unbounded> 
-. [QUIT                                                                            ]
-. Exit
+A=()
+B=(abcdef)
+C=(?abc.(defg))
+D=()
+E=()
+F=(abc)def
+G=(H)
+I=(?x.(x))
+J=(ab(cd)e)
+K=(ab(?c.(d))e)
+Y=(?f.(?x.(f(xx)))(?x.(f(xx))))
+Unbounded> 
+. Trace on
+Unbounded> 
+. Trace off
+Unbounded> 
 
 Bye

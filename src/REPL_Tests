@@ -80,14 +80,23 @@ C=?abc.defg
 D=# Delete D
 E= # Delete E
 F=(abc)def
+G=H
+I=ab(cd)
+J=ab(cd)e
+K=ab(?c.d)e
 # Assignment - standard functions
 I=?x.x
 Y=?f.(?x.f(xx))(?x.f(xx))
-
+# Assignment - bad assignment
+ABC=abc
+A=B=C
+a=bcd
+# Buffer overflow
+                                                                             ?x.xABCDEFGHIJKLMNOPQRSTUVWXYZ
 # Commands
 # --------
+LS
 TRACE-ON
 TRACE-OFF
-LS
 QUIT
 
