@@ -32,11 +32,17 @@
 -- 
 -- Unit testing is performed via the make script.  
 --
--- TBD
--- * Save/Restore synonyms to a file
+-- Source:
+-- lambda         - [This file] definitions and helper functions
+-- lambda_REPL    - REPL and command line parsers
+-- lambda_parser  - parse tree generator
+-- lambda_reducer - optimises and reduces lambda expressions
 --
 
 with Lambda; use Lambda;
+with lambda_REPL; use lambda_REPL;
+-- with lambda_parser_parser; use Lambda;
+-- with lambda_reducer; use lambda_reducer;
 with Ada.Text_IO; use Ada.Text_IO;
 
 procedure unbounded is

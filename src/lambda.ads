@@ -5,8 +5,12 @@
 -- Use a simple recursive parser for the simplest computer language.
 -- It would be nice to build an ADT for Instructions and hide the Multiway tree implementation.
 -- 
--- TBD:
--- Source is getting too big.  Split into two packages: Lambda_REPL and Lambda_CORE
+-- Source:
+-- lambda         - [This file] definitions and helper functions
+-- lambda_REPL    - REPL and command line parsers
+-- lambda_parser  - parse tree generator
+-- lambda_reducer - optimises and reduces lambda expressions
+-- 
 
 with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 with Ada.Containers; use Ada.Containers;
@@ -29,12 +33,6 @@ Package Lambda is
    -- L_Expression  : Expression
    -- L_Definition  : Synonym definition
 
-   -- type Element is record
-   --    Element : Element_Type;
-   --    Name : Character;
-   --    is_Explicit : Boolean := true;
-   -- end record;
-
    type Element_Record ( Element : Element_Type := L_Expression ) is record
       Name : Character;
       is_Explicit : Boolean := true;
@@ -48,22 +46,6 @@ Package Lambda is
      (Element_Type => Element_Record);
    use Instructions;
 
-   -- Processing functions
-   procedure REPL;
-
-   -- REPL command parser
-   function parse_Commands( S: Statement ) return Boolean;
-   -- Lamdba statement parser
-   function parse_Statement( S: Statement ) return Instructions.Tree;
-
-   -- Alpha-renaming to preserve the meaning of a function
-   -- function rename( I: Instructions.Tree ) return Instructions.Tree;
-
-   -- Beta-reduction, Eta-reduction.  When do you use these?  What is the strategy?
-   function reduce( I: Instructions.Tree ) return Instructions.Tree;
-   -- Variable substitution, eg (?x.x)[y:=y] = ?x.(x[y:=y]) = ?x.x
-   -- function substitution( I: Instructions.Tree ) return Instructions.Tree;
-
    -- Exceptions
    Syntax_Error : exception;
    Recursion_Overflow : exception;
@@ -71,15 +53,6 @@ Package Lambda is
 
    Package SU renames Ada.Strings.Unbounded;
 
-private
-   Synonyms : Instructions.Tree := Empty_Tree;
-   procedure Add_Synonym( Source : Instructions.Cursor );
-   procedure Remove_Synonym( S : Statement );
-   procedure List_Synonyms;
-
-   function Get_Statement return Statement;
-
-   function format_Element ( I : Instructions.tree; Curs : Instructions.Cursor ) return SU.Unbounded_String;
    function format ( I: Instructions.Tree ) return String;
    function format ( I: Instructions.Tree; Curs : Instructions.Cursor ) return String;
 
@@ -87,10 +60,19 @@ private
    procedure Log (S: String);
    procedure Log (T : Log_Type; S: String);
 
+   procedure Add_Synonym( Source : Instructions.Cursor );
+   procedure Remove_Synonym( S : Statement );
+   procedure List_Synonyms;
+
    Trace : Boolean := FALSE;           -- Trace the REPL
-   Trace_Parse  : Boolean := FALSE;    -- Parser detail
-   Trace_Reduce : Boolean := FALSE;    -- Reducer detail
-   Trace_Format : Boolean := FALSE;    -- Formatter detail
+   Trace_Parse  : Boolean := FALSE;    -- Trace Parser detail
+   Trace_Reduce : Boolean := FALSE;    -- Trace Reducer detail
+   Trace_Format : Boolean := FALSE;    -- Trace Formatter detail
+
+private
+   Synonyms : Instructions.Tree := Instructions.Empty_Tree;
+
+   function format_Element ( I : Instructions.tree; Curs : Instructions.Cursor ) return SU.Unbounded_String;
 
 end Lambda;
 
