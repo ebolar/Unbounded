@@ -26,12 +26,12 @@ Package Lambda is
    subtype Name_Type is Character range 'a' .. 'z';
    subtype Synonym_Type is Character range 'A' .. 'Z';
 
-   type Element_Type is (L_Variable, L_Synonym, L_Function, L_Expression, L_Definition, L_Comments);
    -- L_Variable    : Variable name
    -- L_Synonym     : Synonym name
    -- L_Function    : Function definition
    -- L_Expression  : Expression
    -- L_Definition  : Synonym definition
+   type Element_Type is (L_Variable, L_Synonym, L_Function, L_Expression, L_Definition, L_Comments);
 
    type Element_Record ( Element : Element_Type := L_Expression ) is record
       Name : Character;
@@ -56,12 +56,19 @@ Package Lambda is
    function format ( I: Instructions.Tree ) return String;
    function format ( I: Instructions.Tree; Curs : Instructions.Cursor ) return String;
 
-   type Log_Type is (Log_Parse, Log_Reduce, Log_Format);
-   procedure Log (S: String);
-   procedure Log (T : Log_Type; S: String);
+   function Indent( I : Natural ) return String; 
 
-   procedure Add_Synonym( Source : Instructions.Cursor );
-   procedure Remove_Synonym( S : Statement );
+   type Log_Type is ( Log_Parse, Log_Reduce, Log_Format );
+   procedure Log ( S: String );
+   procedure Log ( S: String; I: Instructions.Tree );
+   procedure Log ( S: String; I: Instructions.Tree; C: Instructions.Cursor );
+   procedure Log ( T: Log_Type; S: String );
+   procedure Log ( T: Log_Type; S: String; I: Instructions.Tree );
+   procedure Log ( T: Log_Type; S: String; I: Instructions.Tree; C: Instructions.Cursor );
+   procedure Log_Format ( I: Instructions.Tree );
+
+   procedure Add_Synonym ( Source : Instructions.Cursor );
+   procedure Remove_Synonym ( S : Statement );
    procedure List_Synonyms;
 
    Trace : Boolean := FALSE;           -- Trace the REPL

@@ -41,148 +41,89 @@ Package body Lambda_Parser is
       Index : Instructions.Cursor;
 
       X : Statement := trim(S, Left);
-      Level : Natural := 0;
 
-      -- E : Character;
       C : Natural := 1;
 
-      function indent( I : Natural ) return String is
-         -- should be more than long enough
-         M : String := Ada.Strings.Fixed.Head("", Max_Statement_Length/2, ' ');
-      begin
-         return M(1..I);
-      end;
+   begin
+      Level := 0;
+      Index := Instructions.Root(Default);
 
-      -- TBD:
-      -- - Break these out into multiple functions.  Would a separate package be useful?
-      -- - Cleanup the code - using Next_Is and Locate helper functions.
-      -- - Automatically create containers - dont need to check for explicit '('.
-      -- - Reducer can optimise ((X)) to (X)!
-      --
-      -- parse_expression()
-      procedure parse_expression( Stmt : Statement; Posn : in out Natural; Inst : in out Instructions.Tree; Curs : Instructions.Cursor ) is
-         E : Character;
-         Node : Element_Record;
-         Index : Instructions.Cursor;
+      Log ("Parse " & X);
 
-         function Next_Is(Stmt : Statement; Posn : Natural; Expected : Character) return boolean is
-            Loc : Natural;
-            E : Character;
-         begin
-            Loc := Posn + 1;
-            while Loc <= Stmt'Length loop
-               E := Stmt(Loc);
-               if E = Expected then
-                       return true;
+      parse_expression( S, C, Default, Index);
+
+      return Default;
+   end parse_Statement;
+
+   -- TBD:
+   -- - Break these out into multiple functions.  
+   -- - Stmt'Last is more correct than Stmt'Length as strings do not have to start at position 1
+   --
+   -- parse_expression()
+   procedure parse_expression( Stmt : Statement; Posn : in out Natural; Inst : in out Instructions.Tree; Curs : Instructions.Cursor ) is
+      E : Character;
+      Node : Element_Record;
+      Index : Instructions.Cursor;
+
+   begin
+      while Posn <= Stmt'Length loop
+         E := Stmt(Posn);
+
+         case E is
+            when Name_Type =>
+               if Instructions.Is_Empty (Inst)
+               then
+                  --   Insert(L_Expression)
+                  Node := (Element => L_Expression, Name => '_', Is_Explicit => false);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
+
+                  --   move Cursor and reprocess
+                  parse_expression(Stmt, Posn, Inst, Instructions.First_Child(Parent => Curs));
+
                else
-                  case E is
-                     when '_' | ' ' => Loc := Loc + 1;
-                     when others => return false;
-                  end case;
+                  Log(Log_Parse, Indent(Level) & "Variable: " & E);
+
+                  -- Insert(L_Variable)
+                  Node := (Element => L_Variable, Name => E, is_Explicit => true);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
                end if;
-            end loop;
-            return false;
-         end;
 
-         function Locate(Stmt : Statement; Posn : Natural; Expected : Character) return natural is
-            Loc : Natural := Posn;
-            E : Character;
-         begin
-            while Loc <= Stmt'Length loop
-               E := Stmt(Loc);
-               if E = Expected then
-                       return Loc;
-               else
-                       Loc := Loc + 1;
-               end if;
-            end loop;
-            return Loc;
-         end;
+            -- parse_synonym()
+            when Synonym_Type =>
+               -- if empty tree and next character is '=' then
+               if Instructions.Is_Empty(Inst) and next_is( Stmt, Posn, '=') then
+                  --   Insert (L_Definition (L_Symbol, L_Expression ...)
+                  Log(Log_Parse, Indent (Level) & "Synonym: " & E);
+                  Log(Log_Parse, Indent (Level) & "= ");
+                  Node := (Element => L_Definition, Name => E, is_Explicit => false);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
 
-      begin
-         while Posn <= Stmt'Length loop
-            E := Stmt(Posn);
+                  Posn := Locate(Stmt, Posn, '=');
+                  Index := Instructions.Last_Child(Parent => Curs);
 
-            case E is
-               when Name_Type =>
-                  if Instructions.Is_Empty (Inst)
-                  then
-                     --   Insert(L_Expression)
+                  -- if next_is( Stmt, Posn, '(')
+                  -- then
+                  --    Posn := Locate(Stmt, Posn, '(');
+                  --    parse_expression(Stmt, Posn, Inst, Index);
+                  -- else
                      Node := (Element => L_Expression, Name => '_', Is_Explicit => false);
                      Instructions.Append_Child(Container => Inst,
-                                  Parent    => Curs,
+                                  Parent    => Index,
                                   New_Item  => Node);
 
-                     --   move Cursor and reprocess
-                     parse_expression(Stmt, Posn, Inst, Instructions.First_Child(Parent => Curs));
+                     Posn := Posn + 1;
+                     parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Index));
+                  -- end if;
 
-                  else
-                     Log(Log_Parse, Indent(Level) & "Variable: " & E);
+                  Add_Synonym( Source=> Index );
 
-                     -- Insert(L_Variable)
-                     Node := (Element => L_Variable, Name => E, is_Explicit => true);
-                     Instructions.Append_Child(Container => Inst,
-                                  Parent    => Curs,
-                                  New_Item  => Node);
-                  end if;
-
-               -- parse_synonym()
-               when Synonym_Type =>
-                  -- if empty tree and next character is '=' then
-                  if Instructions.Is_Empty(Inst) and next_is( Stmt, Posn, '=') then
-                     --   Insert (L_Definition (L_Symbol, L_Expression ...)
-                     Log(Log_Parse, Indent (Level) & "Synonym: " & E);
-                     Log(Log_Parse, Indent (Level) & "= ");
-                     Node := (Element => L_Definition, Name => E, is_Explicit => false);
-                     Instructions.Append_Child(Container => Inst,
-                                  Parent    => Curs,
-                                  New_Item  => Node);
-
-                     Posn := Locate(Stmt, Posn, '=');
-                     Index := Instructions.Last_Child(Parent => Curs);
-
-                     if next_is( Stmt, Posn, '(')
-                     then
-                        Posn := Locate(Stmt, Posn, '(');
-                        parse_expression(Stmt, Posn, Inst, Index);
-                     else
-                        Node := (Element => L_Expression, Name => '_', Is_Explicit => false);
-                        Instructions.Append_Child(Container => Inst,
-                                     Parent    => Index,
-                                     New_Item  => Node);
-
-                        Posn := Posn + 1;
-                        parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Index));
-                     end if;
-
-                     Add_Synonym( Source=> Index );
-
-                  else
-                     if Instructions.Is_Empty (Inst)
-                     then
-                        --   Insert(L_Expression)
-                        Node := (Element => L_Expression, Name => '_', is_Explicit => false);
-                        Instructions.Append_Child(Container => Inst,
-                                     Parent    => Curs,
-                                     New_Item  => Node);
-
-                        --   move Cursor and reprocess
-                        parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Curs));
-
-                     else
-                        Log(Log_Parse, Indent (Level) & "Synonym: " & E);
-
-                        --   Insert (L_Synonym)
-                        Node := (Element => L_Synonym, Name => E, is_Explicit => true);
-                        Instructions.Append_Child(Container => Inst,
-                                     Parent    => Curs,
-                                     New_Item  => Node);
-                     end if;
-                  end if;
-
-               -- parse_function()
-               when '?' | '&' | '\' =>
-
+               else
                   if Instructions.Is_Empty (Inst)
                   then
                      --   Insert(L_Expression)
@@ -195,166 +136,222 @@ Package body Lambda_Parser is
                      parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Curs));
 
                   else
-                     Node := Instructions.Element(Curs);
+                     Log(Log_Parse, Indent (Level) & "Synonym: " & E);
 
-                     -- Functions are an implicitly defined container
-                     Node := (Element => L_Function, Name => E, is_Explicit => false);
+                     --   Insert (L_Synonym)
+                     Node := (Element => L_Synonym, Name => E, is_Explicit => true);
                      Instructions.Append_Child(Container => Inst,
                                   Parent    => Curs,
                                   New_Item  => Node);
-
-                     Index := Instructions.Last_Child(Parent => Curs);
-
-                     Log(Log_Parse, Indent (Level) & "Function - Variables");
-                     Level := Level + 1;
-
-                     Posn := Posn + 1;
-                     while Posn <= Stmt'Length loop
-                        E := Stmt(Posn);
-                        Posn := Posn + 1;
-
-                        exit when E = '.';
-
-                        case E is
-                           when Name_Type =>
-                              Log(Log_Parse, Indent(Level) & "Variable: " & E);
-
-                              -- Insert(L_Variable)
-                              Node := (Element => L_Variable, Name => E, is_Explicit => true);
-                              Instructions.Append_Child(Container => Inst,
-                                           Parent    => Index,
-                                           New_Item  => Node);
-                           when others => raise Syntax_Error with "Malformed function declaration";
-                        end case;
-                     end loop;
-                     Log(Log_Parse, Indent (Level - 1) & "Function - Expression");
-
-                     --   if next character is not '('
-                     --   (needs a next routine that skips spaces)
-                     begin
-                        if Stmt(Posn) /= '('
-                        then
-                           --   Insert(implied L_Expression)
-                           Node := (Element => L_Expression, Name => '_', is_Explicit => false);
-                           Instructions.Append_Child(Container => Inst,
-                                        Parent    => Index,
-                                        New_Item  => Node);
-
-                           Index := Instructions.Last_Child(Parent => Index);
-
-                        end if;
-                     exception
-                        when Constraint_Error =>
-                           raise Program_Error with "Buffer overflow";
-                     end;
-
-                     Node := Instructions.Element(Index);
-
-                     --   Process the expression
-                     parse_expression(Stmt, Posn, Inst, Index);
                   end if;
+               end if;
 
-               when '(' =>
-                  Log(Log_Parse, Indent (Level) & "(");
+            -- parse_function()
+            when '?' | '&' | '\' =>
 
-                  if not Instructions.Is_Root(Curs)
-                  then
-                     Node := Instructions.Element(Curs);
-                  end if;
-
-                  Level := Level + 1;
-
+               if Instructions.Is_Empty (Inst)
+               then
                   --   Insert(L_Expression)
-                  Node := (Element => L_Expression, Name => '_', is_Explicit => true);
+                  Node := (Element => L_Expression, Name => '_', is_Explicit => false);
                   Instructions.Append_Child(Container => Inst,
                                Parent    => Curs,
                                New_Item  => Node);
 
+                  --   move Cursor and reprocess
+                  parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Curs));
+
+               else
+                  -- Functions are an implicitly defined container
+                  Node := (Element => L_Function, Name => E, is_Explicit => false);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
+
+                  Index := Instructions.Last_Child(Parent => Curs);
+
+                  Log(Log_Parse, Indent (Level) & "Function - Variables");
+                  Level := Level + 1;
+
+                  Posn := Posn + 1;
+                  while Posn <= Stmt'Length loop
+                     E := Stmt(Posn);
+                     exit when E = '.';
+
+                     case E is
+                        when Name_Type =>
+                           Log(Log_Parse, Indent(Level) & "Variable: " & E);
+
+                           -- Insert(L_Variable)
+                           Node := (Element => L_Variable, Name => E, is_Explicit => true);
+                           Instructions.Append_Child(Container => Inst,
+                                        Parent    => Index,
+                                        New_Item  => Node);
+                        when others => raise Syntax_Error with "Malformed function declaration";
+                     end case;
+
+                     Posn := Posn + 1;
+                  end loop;
+
+		  if Posn >= Stmt'Length then
+                     raise Program_Error with "Buffer overflow";
+		  end if;
+
+                  Log(Log_Parse, Indent (Level - 1) & "Function - Expression");
+
+                  --   if next character is not '('
+		  if not Next_is( Stmt, Posn, '(' ) 
+                  then
+                     --   Insert(implied L_Expression)
+                     Node := (Element => L_Expression, Name => '_', is_Explicit => false);
+                     Instructions.Append_Child(Container => Inst,
+                                  Parent    => Index,
+                                  New_Item  => Node);
+
+                     Index := Instructions.Last_Child(Parent => Index);
+
+                  end if;
+
+                  Node := Instructions.Element(Index);
+
+                  --   Process the expression
+                  Posn := Posn + 1;
+                  parse_expression(Stmt, Posn, Inst, Index);
+               end if;
+
+            when '(' =>
+               if Instructions.Is_Empty (Inst)
+               then
+                  --   Insert(L_Expression)
+                  Node := (Element => L_Expression, Name => '_', Is_Explicit => false);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
+
+                  --   move Cursor and reprocess
+                  parse_expression(Stmt, Posn, Inst, Instructions.First_Child(Parent => Curs));
+               else
+                  Log(Log_Parse, Indent (Level) & "(");
+   
+                  Level := Level + 1;
+   
+                  --   Insert(L_Expression)
+                  Node := (Element => L_Expression, Name => '(', is_Explicit => true);
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Curs,
+                               New_Item  => Node);
+   
                   --   move Cursor and parse the sub-expression
                   Posn := Posn + 1;
                   parse_expression(Stmt, Posn, Inst, Instructions.Last_Child(Parent => Curs));
-
+   
                   if Posn > Stmt'Length
                   then
                      raise Syntax_Error with "Missing ')'";
                   end if;
+               end if;
 
-               when ')' =>
-                  begin
-                     Node := Instructions.Element(Curs);
-                     Level := Level - 1;
+            when ')' =>
+               begin
+                  Node := Instructions.Element(Curs);
+                  Level := Level - 1;
 
-                     if Node.is_Explicit then
-                        Log(Log_Parse, Indent (Level) & ")");
-                     else
-                        -- If we are dealing with an implicitly defined container
-                        -- and we encounter a ')',
-                        -- it belongs to the enclosing expression and not this one!
-                        Log(Log_Parse, Indent (Level) & ".");
-                        Posn := Posn - 1;
-                     end if;
+                  if Node.is_Explicit then
+                     Log(Log_Parse, Indent (Level) & ")");
+                  else
+                     -- If we are dealing with an implicitly defined container
+                     -- and we encounter a ')',
+                     -- it belongs to the enclosing expression and not this one!
+                     Log(Log_Parse, Indent (Level) & ".");
+                     Posn := Posn - 1;
+                  end if;
 
-                     return;
-                  exception
-                     when Constraint_Error =>
-                        raise Syntax_Error with "Unmatched ')'";
-                  end;
-
-               -- parse_comments()
-               when '#' =>
-                  Log(Log_Parse, Indent (Level) & "#");
-
-                  --   Insert(L_Comments)
-                  Node := (Element => L_Comments, Name => '#', is_Explicit => true, Comments => Empty_Statement);
-                  Node.Comments := Ada.Strings.Fixed.Head(Stmt(Posn+1..Stmt'Last), Max_Statement_Length, ' ');
-
-                  declare
-                     First : Element_Record;
-                     Location : Instructions.Cursor := Instructions.Root(Inst);
-                  begin
-                     -- if first child is a symbol definition then append to the definition
-                     if not Instructions.Is_Empty(Inst)
-                     then
-                        First := Instructions.First_Child_Element(Location);
-                        if First.Element = L_Definition
-                        then
-                           Location := Instructions.First_Child(Location);
-                        end if;
-                     end if;
-
-                     Instructions.Append_Child(Container => Inst,
-                                  Parent    => Location,
-                                  New_Item  => Node);
-                  end;
-
-                  -- Skip forward to the end of line
-                  Posn := Stmt'Length + 1;
-
-                  -- and bug out!
                   return;
+               exception
+                  when Constraint_Error =>
+                     raise Syntax_Error with "Unmatched ')'";
+               end;
 
-               -- Ignore spaces
-               when '_' | ' ' => null;
+            -- parse_comments()
+            when '#' =>
+               Log(Log_Parse, Indent (Level) & "#");
 
-               -- Various syntax errors
-               when '.' =>
-                  raise Syntax_Error with "Unexpected '.' - no function declared";
-               when '=' =>
-                  raise Syntax_Error with "Unexpected Synonym assignment";
-               when others => raise Syntax_Error with "Invalid character";
-            end case;
+               --   Insert(L_Comments)
+               Node := (Element => L_Comments, Name => '#', is_Explicit => true, Comments => Empty_Statement);
+               Node.Comments := Ada.Strings.Fixed.Head(Stmt(Posn+1..Stmt'Last), Max_Statement_Length, ' ');
 
-            Posn := Posn + 1;
-         end loop;
-      end;
+               declare
+                  First : Element_Record;
+                  Location : Instructions.Cursor := Instructions.Root(Inst);
+               begin
+                  -- if first child is a symbol definition then append to the definition
+                  if not Instructions.Is_Empty(Inst)
+                  then
+                     First := Instructions.First_Child_Element(Location);
+                     if First.Element = L_Definition
+                     then
+                        Location := Instructions.First_Child(Location);
+                     end if;
+                  end if;
 
+                  Instructions.Append_Child(Container => Inst,
+                               Parent    => Location,
+                               New_Item  => Node);
+               end;
+
+               -- Skip forward to the end of line
+               Posn := Stmt'Length + 1;
+
+               -- and bug out!
+               return;
+
+            -- Ignore spaces
+            when '_' | ' ' => null;
+
+            -- Various syntax errors
+            when '.' =>
+               raise Syntax_Error with "Unexpected '.' - no function declared";
+            when '=' =>
+               raise Syntax_Error with "Unexpected Synonym assignment";
+            when others => raise Syntax_Error with "Invalid character";
+         end case;
+
+         Posn := Posn + 1;
+      end loop;
+   end;
+
+   function Next_Is(Stmt : Statement; Posn : Natural; Expected : Character) return boolean is
+      Loc : Natural;
+      E : Character;
    begin
-      Index := Instructions.Root(Default);
+      Loc := Posn + 1;
+      while Loc <= Stmt'Length loop
+         E := Stmt(Loc);
+         if E = Expected then
+                 return true;
+         else
+            case E is
+               when '_' | ' ' => Loc := Loc + 1;
+               when others => return false;
+            end case;
+         end if;
+      end loop;
+      return false;
+   end;
 
-      parse_expression( S, C, Default, Index);
-
-      return Default;
-   end parse_Statement;
+   function Locate(Stmt : Statement; Posn : Natural; Expected : Character) return natural is
+      Loc : Natural := Posn;
+      E : Character;
+   begin
+      while Loc <= Stmt'Length loop
+         E := Stmt(Loc);
+         if E = Expected then
+                 return Loc;
+         else
+                 Loc := Loc + 1;
+         end if;
+      end loop;
+      return Loc;
+   end;
 
 end Lambda_Parser;
 

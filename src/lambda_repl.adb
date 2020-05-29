@@ -56,8 +56,12 @@ Package body Lambda_REPL is
             if not parse_Commands(S) then
                I := parse_Statement(S);
 
+	       Log_Format(I);
+
                -- reduce the line
                I := reduce(I);
+
+	       Log_Format(I);
 
                -- print the line
                Put_Line("-> " & format(I));

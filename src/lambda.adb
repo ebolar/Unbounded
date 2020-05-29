@@ -45,7 +45,7 @@ Package body Lambda is
    function format ( I: Instructions.tree; Curs : Instructions.Cursor ) return Statement is
       Buffer : SU.Unbounded_String := SU.Null_Unbounded_String;
    begin
-      if not Instructions.is_Empty(I)
+      if not Instructions.is_Empty(I) and then Curs /= Instructions.No_Element
       then
          SU.Append(Buffer, format_Element(I, Curs));
       end if;
@@ -61,8 +61,6 @@ Package body Lambda is
       E : Element_Record;
       variables : Boolean;
    begin
-      Log(Log_Format, "[" & Element_Type'Image(Node.Element) & ", " & Node.Name & ", Is_Explicit=" & Boolean'Image(Node.Is_Explicit) & "]");
-
       case Node.Element is
          when L_Expression =>
             SU.Append(Buffer, '(');
@@ -127,6 +125,55 @@ Package body Lambda is
       return Buffer;
    end;
 
+   -- Log the structure of the instructions tree
+   procedure Log_Format ( I: Instructions.tree ) is
+      Curs : Instructions.Cursor;
+
+      procedure Log_Format_Element ( I : Instructions.tree; Curs : Instructions.Cursor ) is
+         Node : Element_Record := Instructions.Element(Curs);
+      begin
+         case Node.Element is
+            when L_Expression | L_Function | L_Definition =>
+               Log(Log_Format, Indent(Natural(Instructions.Depth(Curs))) & 
+	       "[" & Element_Type'Image(Node.Element) & 
+	       ", " & Node.Name & 
+	       ", Is_Explicit=" & Boolean'Image(Node.Is_Explicit) & 
+	       "]");
+   
+               for C in Iterate_Children( Container => I, Parent => Curs )
+               loop
+                  Log_Format_Element(I, C);
+               end loop;
+   
+            when L_Variable | L_Synonym =>
+               Log(Log_Format, Indent(Natural(Instructions.Depth(Curs))) & 
+	       "[" & Element_Type'Image(Node.Element) & 
+	       ", " & Node.Name & 
+	       ", Is_Explicit=" & Boolean'Image(Node.Is_Explicit) & 
+	       "]");
+   
+            when L_Comments =>
+               Log(Log_Format, Indent(Natural(Instructions.Depth(Curs))) & 
+	       "[" & Element_Type'Image(Node.Element) & 
+	       ", '" & Node.Name & Ada.Strings.Fixed.Trim(Node.Comments, Right ) & "'" &
+	       ", Is_Explicit=" & Boolean'Image(Node.Is_Explicit) & 
+	       "]");
+
+         end case;
+   
+      end;
+
+   begin
+      if Trace and Trace_Format and not Instructions.is_Empty(I)
+      then
+         for Curs in Iterate_Children( Container => I, Parent => Root(I) )
+         loop
+            Log_Format_Element(I, Curs);
+         end loop;
+      end if;
+
+   end;
+
    -- Add a Synonym to the list
    --
    -- Nb: Synonyms are stored in alphabetical order
@@ -176,7 +223,7 @@ Package body Lambda is
          SE := Instructions.Element(Curs);
          if SE.Name = S(S'First)
 	 then
-            Log("Removing " & format(Synonyms, Curs));
+            Log("Removing ", Synonyms, Curs);
 	    Delete_Subtree( Container => Synonyms, Position => Curs);
 
 	    Found := TRUE;
@@ -214,6 +261,22 @@ Package body Lambda is
       end if;
    end;
 
+   procedure Log(S : String; I : Instructions.Tree ) is
+   begin
+      if Trace
+      then
+         Put_Line(".. " & S & format(I));
+      end if;
+   end;
+
+   procedure Log(S : String; I : Instructions.Tree; C : Instructions.Cursor ) is
+   begin
+      if Trace
+      then
+         Put_Line(".. " & S & format(I, C));
+      end if;
+   end;
+
    -- Granular logging
    procedure Log(T : Log_Type; S : String) is
    begin
@@ -236,6 +299,59 @@ Package body Lambda is
 	       raise program_error with "Unexpected log type " & Log_Type'image(T);
 	 end case;
       end if;
+   end;
+
+   procedure Log(T : Log_Type; S : String; I : Instructions.Tree ) is
+   begin
+      if Trace
+      then
+         case T is
+            when Log_Parse =>
+               if Trace_Parse then
+		  Put_Line("... P-" & S & Format(I));
+	       end if;
+            when Log_Reduce =>
+               if Trace_Reduce then
+		  Put_Line("... R-" & S & Format(I));
+	       end if;
+            when Log_Format =>
+               if Trace_Format then
+		  Put_Line("... F-" & S & Format(I));
+	       end if;
+            when others =>
+	       raise program_error with "Unexpected log type " & Log_Type'image(T);
+	 end case;
+      end if;
+   end;
+
+   procedure Log(T : Log_Type; S : String; I : Instructions.Tree; C : Instructions.Cursor ) is
+   begin
+      if Trace
+      then
+         case T is
+            when Log_Parse =>
+               if Trace_Parse then
+		  Put_Line("... P-" & S & Format(I, C));
+	       end if;
+            when Log_Reduce =>
+               if Trace_Reduce then
+		  Put_Line("... R-" & S & Format(I, C));
+	       end if;
+            when Log_Format =>
+               if Trace_Format then
+		  Put_Line("... F-" & S & Format(I, C));
+	       end if;
+            when others =>
+	       raise program_error with "Unexpected log type " & Log_Type'image(T);
+	 end case;
+      end if;
+   end;
+
+   function indent( I : Natural ) return String is
+      -- should be more than long enough
+      M : String := Ada.Strings.Fixed.Head("", Max_Statement_Length/2, ' ');
+   begin
+      return M(1..I);
    end;
 
 end Lambda;

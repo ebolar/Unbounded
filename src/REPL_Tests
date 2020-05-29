@@ -9,7 +9,7 @@ trace off
 trace
 trace on
 trace parse
-trace parse format reduce
+trace parse reduce format
 #
 # Comments
 # --------
@@ -41,6 +41,9 @@ abc(de(fg))
 abc(de(fg))hijk
 abc(de(fgh)i)jk
 a(b(c(d(e(f(g))))))
+abc()d
+(abc()d)
+(abc(d((e()))f)g(h))
 # Application
 abc(def)(gh)ijk
 III # identity of identity of identity
@@ -61,10 +64,15 @@ abc(def(gh)
 ?abc.de
 &abc.de
 \abc.de
+# Statement optimisation
+?x.ab(c()d)
+(?x.((abc)de()))
+(?x.a(b()c))
 # Standard functions
 ?x.x
 &x.x
 \x.x
+(?x.x)
 ?f.(?x.f(xx))(?x.f(xx))
 &f.(&x.f(xx))(&x.f(xx))
 \f.(\x.f(xx))(\x.f(xx))
@@ -92,15 +100,26 @@ G=H
 I=ab(cd)
 J=ab(cd)e
 K=ab(?c.d)e
+L = asdf # space reduction
+
 # Assignment - standard functions
 I=?x.x # Identity
 Y=?f.(?x.f(xx))(?x.f(xx)) # Y Combinator
+
+# Assignment - statement optimisation
+M= abc()d
+N= (abc()d) # magical stuff
+O= (abc(d((e()))f)g(h))
+
 # Assignment - bad assignment
 ABC=abc
 A=B=C
 a=bcd
 # Buffer overflow
+                                                                            ?x.xABCDEFGHIJKLMNOPQRSTUVWXYZ
                                                                              ?x.xABCDEFGHIJKLMNOPQRSTUVWXYZ
+                                                                              ?x.xABCDEFGHIJKLMNOPQRSTUVWXYZ
+                                                                               ?x.xABCDEFGHIJKLMNOPQRSTUVWXYZ
 # Commands
 # --------
 LS

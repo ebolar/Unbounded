@@ -41,83 +41,133 @@ Unbounded>
 Unbounded> 
 . Trace on - PARSE - REDUCE - FORMAT
 Unbounded> 
+.. Parse #                                                                               
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
+.. Reduce #                                                                                
+... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
 -> #                                                                                
 Unbounded> 
+.. Parse # Comments                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Comments', Is_Explicit=TRUE]
+.. Reduce # Comments                                                                       
+... F-  [L_COMMENTS, '# Comments', Is_Explicit=TRUE]
 -> # Comments                                                                       
 Unbounded> 
+.. Parse # --------                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
+.. Reduce # --------                                                                       
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
+.. Parse # Trailing comments                                                             
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
+.. Reduce # Trailing comments                                                              
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 -> # Trailing comments                                                              
 Unbounded> 
+.. Parse asdf# Trailing comments                                                         
 ... P-Variable: a
 ... P-Variable: s
 ... P-Variable: d
 ... P-Variable: f
 ... P-#
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, s, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
+.. Reduce (asdf) # Trailing comments                                                              
+... R-Optimise  (asdf)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 -> (asdf) # Trailing comments                                                              
 Unbounded> 
+.. Parse asdf # Trailing comments                                                        
 ... P-Variable: a
 ... P-Variable: s
 ... P-Variable: d
 ... P-Variable: f
 ... P-#
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, s, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
+.. Reduce (asdf) # Trailing comments                                                              
+... R-Optimise  (asdf)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 -> (asdf) # Trailing comments                                                              
 Unbounded> 
+.. Parse asdf	# Trailing comments - tab                                                  
 ... P-Variable: a
 ... P-Variable: s
 ... P-Variable: d
 ... P-Variable: f
 LAMBDA.SYNTAX_ERROR: Invalid character in asdf	# Trailing comments - tab
 Unbounded> 
+.. Parse asdf	  # Trailing comments - mixed                                              
 ... P-Variable: a
 ... P-Variable: s
 ... P-Variable: d
 ... P-Variable: f
 LAMBDA.SYNTAX_ERROR: Invalid character in asdf	  # Trailing comments - mixed
 Unbounded> 
+.. Parse asdf #                                                                          
 ... P-Variable: a
 ... P-Variable: s
 ... P-Variable: d
 ... P-Variable: f
 ... P-#
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, s, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
+.. Reduce (asdf) #                                                                                
+... R-Optimise  (asdf)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
 -> (asdf) #                                                                                
 Unbounded> 
+.. Parse # Empty line                                                                    
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Empty line', Is_Explicit=TRUE]
+.. Reduce # Empty line                                                                     
+... F-  [L_COMMENTS, '# Empty line', Is_Explicit=TRUE]
 -> # Empty line                                                                     
 Unbounded> 
+.. Parse 
+.. Reduce 
 -> 
 Unbounded> 
+.. Parse # Buffer overflow                                                               
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
+.. Reduce # Buffer overflow                                                                
+... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 -> # Buffer overflow                                                                
 Unbounded> 
+.. Parse abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -196,171 +246,309 @@ Unbounded>
 ... P-Variable: x
 ... P-Variable: y
 ... P-Variable: z
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
-... F-[L_VARIABLE, h, Is_Explicit=TRUE]
-... F-[L_VARIABLE, i, Is_Explicit=TRUE]
-... F-[L_VARIABLE, j, Is_Explicit=TRUE]
-... F-[L_VARIABLE, k, Is_Explicit=TRUE]
-... F-[L_VARIABLE, l, Is_Explicit=TRUE]
-... F-[L_VARIABLE, m, Is_Explicit=TRUE]
-... F-[L_VARIABLE, n, Is_Explicit=TRUE]
-... F-[L_VARIABLE, o, Is_Explicit=TRUE]
-... F-[L_VARIABLE, p, Is_Explicit=TRUE]
-... F-[L_VARIABLE, q, Is_Explicit=TRUE]
-... F-[L_VARIABLE, r, Is_Explicit=TRUE]
-... F-[L_VARIABLE, s, Is_Explicit=TRUE]
-... F-[L_VARIABLE, t, Is_Explicit=TRUE]
-... F-[L_VARIABLE, u, Is_Explicit=TRUE]
-... F-[L_VARIABLE, v, Is_Explicit=TRUE]
-... F-[L_VARIABLE, w, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, y, Is_Explicit=TRUE]
-... F-[L_VARIABLE, z, Is_Explicit=TRUE]
-... F-[L_SYNONYM, A, Is_Explicit=TRUE]
-... F-[L_SYNONYM, B, Is_Explicit=TRUE]
-... F-[L_SYNONYM, C, Is_Explicit=TRUE]
-... F-[L_SYNONYM, D, Is_Explicit=TRUE]
-... F-[L_SYNONYM, E, Is_Explicit=TRUE]
-... F-[L_SYNONYM, F, Is_Explicit=TRUE]
-... F-[L_SYNONYM, G, Is_Explicit=TRUE]
-... F-[L_SYNONYM, H, Is_Explicit=TRUE]
-... F-[L_SYNONYM, I, Is_Explicit=TRUE]
-... F-[L_SYNONYM, J, Is_Explicit=TRUE]
-... F-[L_SYNONYM, K, Is_Explicit=TRUE]
-... F-[L_SYNONYM, L, Is_Explicit=TRUE]
-... F-[L_SYNONYM, M, Is_Explicit=TRUE]
-... F-[L_SYNONYM, N, Is_Explicit=TRUE]
-... F-[L_SYNONYM, O, Is_Explicit=TRUE]
-... F-[L_SYNONYM, P, Is_Explicit=TRUE]
-... F-[L_SYNONYM, Q, Is_Explicit=TRUE]
-... F-[L_SYNONYM, R, Is_Explicit=TRUE]
-... F-[L_SYNONYM, S, Is_Explicit=TRUE]
-... F-[L_SYNONYM, T, Is_Explicit=TRUE]
-... F-[L_SYNONYM, U, Is_Explicit=TRUE]
-... F-[L_SYNONYM, V, Is_Explicit=TRUE]
-... F-[L_SYNONYM, W, Is_Explicit=TRUE]
-... F-[L_SYNONYM, X, Is_Explicit=TRUE]
-... F-[L_SYNONYM, Y, Is_Explicit=TRUE]
-... F-[L_SYNONYM, Z, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
-... F-[L_VARIABLE, h, Is_Explicit=TRUE]
-... F-[L_VARIABLE, i, Is_Explicit=TRUE]
-... F-[L_VARIABLE, j, Is_Explicit=TRUE]
-... F-[L_VARIABLE, k, Is_Explicit=TRUE]
-... F-[L_VARIABLE, l, Is_Explicit=TRUE]
-... F-[L_VARIABLE, m, Is_Explicit=TRUE]
-... F-[L_VARIABLE, n, Is_Explicit=TRUE]
-... F-[L_VARIABLE, o, Is_Explicit=TRUE]
-... F-[L_VARIABLE, p, Is_Explicit=TRUE]
-... F-[L_VARIABLE, q, Is_Explicit=TRUE]
-... F-[L_VARIABLE, r, Is_Explicit=TRUE]
-... F-[L_VARIABLE, s, Is_Explicit=TRUE]
-... F-[L_VARIABLE, t, Is_Explicit=TRUE]
-... F-[L_VARIABLE, u, Is_Explicit=TRUE]
-... F-[L_VARIABLE, v, Is_Explicit=TRUE]
-... F-[L_VARIABLE, w, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, y, Is_Explicit=TRUE]
-... F-[L_VARIABLE, z, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, l, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, m, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, n, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, o, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, p, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, q, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, r, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, t, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, u, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, v, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, w, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, z, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, A, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, B, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, C, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, D, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, E, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, F, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, G, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, H, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, J, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, K, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, L, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, M, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, N, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, O, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, P, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Q, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, R, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, S, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, T, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, U, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, V, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, W, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, X, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Y, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Z, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, l, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, m, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, n, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, o, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, p, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, q, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, r, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, t, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, u, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, v, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, w, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, z, Is_Explicit=TRUE]
+.. Reduce (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
+... R-Optimise  (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, l, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, m, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, n, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, o, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, p, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, q, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, r, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, t, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, u, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, v, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, w, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, z, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, A, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, B, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, C, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, D, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, E, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, F, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, G, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, H, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, J, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, K, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, L, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, M, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, N, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, O, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, P, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Q, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, R, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, S, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, T, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, U, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, V, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, W, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, X, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Y, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, Z, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, l, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, m, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, n, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, o, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, p, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, q, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, r, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, t, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, u, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, v, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, w, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, z, Is_Explicit=TRUE]
 -> (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
 Unbounded> 
+.. Parse # Expressions                                                                   
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Expressions', Is_Explicit=TRUE]
+.. Reduce # Expressions                                                                    
+... F-  [L_COMMENTS, '# Expressions', Is_Explicit=TRUE]
 -> # Expressions                                                                    
 Unbounded> 
+.. Parse # -----------                                                                   
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# -----------', Is_Explicit=TRUE]
+.. Reduce # -----------                                                                    
+... F-  [L_COMMENTS, '# -----------', Is_Explicit=TRUE]
 -> # -----------                                                                    
 Unbounded> 
+.. Parse # Null expression                                                              
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Null expression', Is_Explicit=TRUE]
+.. Reduce # Null expression                                                                
+... F-  [L_COMMENTS, '# Null expression', Is_Explicit=TRUE]
 -> # Null expression                                                                
 Unbounded> 
+.. Parse # Simple expression                                                             
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Simple expression', Is_Explicit=TRUE]
+.. Reduce # Simple expression                                                              
+... F-  [L_COMMENTS, '# Simple expression', Is_Explicit=TRUE]
 -> # Simple expression                                                              
 Unbounded> 
+.. Parse abcde                                                                           
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 ... P-Variable: d
 ... P-Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (abcde)
+... R-Optimise  (abcde)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (abcde)
 Unbounded> 
+.. Parse # Whitespace removal                                                            
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Whitespace removal', Is_Explicit=TRUE]
+.. Reduce # Whitespace removal                                                             
+... F-  [L_COMMENTS, '# Whitespace removal', Is_Explicit=TRUE]
 -> # Whitespace removal                                                             
 Unbounded> 
+.. Parse a b c d e                                                                       
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 ... P-Variable: d
 ... P-Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (abcde)
+... R-Optimise  (abcde)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (abcde)
 Unbounded> 
+.. Parse a	b	c	d	e                                                                       
 ... P-Variable: a
 LAMBDA.SYNTAX_ERROR: Invalid character in a	b	c	d	e
 Unbounded> 
+.. Parse a_b_c_d_e                                                                       
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 ... P-Variable: d
 ... P-Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (abcde)
+... R-Optimise  (abcde)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (abcde)
 Unbounded> 
+.. Parse a b	 c_d_e                                                                      
 ... P-Variable: a
 ... P-Variable: b
 LAMBDA.SYNTAX_ERROR: Invalid character in a b	 c_d_e
 Unbounded> 
+.. Parse a _	bcde                                                                        
 ... P-Variable: a
 LAMBDA.SYNTAX_ERROR: Invalid character in a _	bcde
 Unbounded> 
+.. Parse # Nested expression                                                             
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Nested expression', Is_Explicit=TRUE]
+.. Reduce # Nested expression                                                              
+... F-  [L_COMMENTS, '# Nested expression', Is_Explicit=TRUE]
 -> # Nested expression                                                              
 Unbounded> 
+.. Parse (abc)                                                                           
 ... P-(
 ... P- Variable: a
 ... P- Variable: b
 ... P- Variable: c
 ... P-)
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+.. Reduce ((abc))
+... R-Optimise   (abc)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
 -> (abc)
 Unbounded> 
+.. Parse (abc)de                                                                         
 ... P-(
 ... P- Variable: a
 ... P- Variable: b
@@ -368,14 +556,26 @@ Unbounded>
 ... P-)
 ... P-Variable: d
 ... P-Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
--> (abc)de
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce ((abc)de)
+... R-Optimise  ((abc)de)
+... R-Optimise   (abc)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
+-> ((abc)de)
 Unbounded> 
+.. Parse abc(de(fg))                                                                     
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -387,18 +587,33 @@ Unbounded>
 ... P-  Variable: g
 ... P- )
 ... P-)
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+.. Reduce (abc(de(fg)))
+... R-Optimise  (abc(de(fg)))
+... R-Optimise   (de(fg))
+... R-Optimise    (fg)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
 -> (abc(de(fg)))
 Unbounded> 
+.. Parse abc(de(fg))hijk                                                                 
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -414,22 +629,41 @@ Unbounded>
 ... P-Variable: i
 ... P-Variable: j
 ... P-Variable: k
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
-... F-[L_VARIABLE, h, Is_Explicit=TRUE]
-... F-[L_VARIABLE, i, Is_Explicit=TRUE]
-... F-[L_VARIABLE, j, Is_Explicit=TRUE]
-... F-[L_VARIABLE, k, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+.. Reduce (abc(de(fg))hijk)
+... R-Optimise  (abc(de(fg))hijk)
+... R-Optimise   (de(fg))
+... R-Optimise    (fg)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 -> (abc(de(fg))hijk)
 Unbounded> 
+.. Parse abc(de(fgh)i)jk                                                                 
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -445,22 +679,41 @@ Unbounded>
 ... P-)
 ... P-Variable: j
 ... P-Variable: k
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
-... F-[L_VARIABLE, h, Is_Explicit=TRUE]
-... F-[L_VARIABLE, i, Is_Explicit=TRUE]
-... F-[L_VARIABLE, j, Is_Explicit=TRUE]
-... F-[L_VARIABLE, k, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+.. Reduce (abc(de(fgh)i)jk)
+... R-Optimise  (abc(de(fgh)i)jk)
+... R-Optimise   (de(fgh)i)
+... R-Optimise    (fgh)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 -> (abc(de(fgh)i)jk)
 Unbounded> 
+.. Parse a(b(c(d(e(f(g))))))                                                             
 ... P-Variable: a
 ... P-(
 ... P- Variable: b
@@ -480,26 +733,154 @@ Unbounded>
 ... P-  )
 ... P- )
 ... P-)
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, g, Is_Explicit=TRUE]
+.. Reduce (a(b(c(d(e(f(g)))))))
+... R-Optimise  (a(b(c(d(e(f(g)))))))
+... R-Optimise   (b(c(d(e(f(g))))))
+... R-Optimise    (c(d(e(f(g)))))
+... R-Optimise     (d(e(f(g))))
+... R-Optimise      (e(f(g)))
+... R-Optimise       (f(g))
+... R-Optimise        (g)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, g, Is_Explicit=TRUE]
 -> (a(b(c(d(e(f(g)))))))
 Unbounded> 
+.. Parse abc()d                                                                          
+... P-Variable: a
+... P-Variable: b
+... P-Variable: c
+... P-(
+... P-)
+... P-Variable: d
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+.. Reduce (abc()d)
+... R-Optimise  (abc()d)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+-> (abcd)
+Unbounded> 
+.. Parse (abc()d)                                                                        
+... P-(
+... P- Variable: a
+... P- Variable: b
+... P- Variable: c
+... P- (
+... P- )
+... P- Variable: d
+... P-)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+.. Reduce ((abc()d))
+... R-Optimise   (abc()d)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
+-> (abcd)
+Unbounded> 
+.. Parse (abc(d((e()))f)g(h))                                                            
+... P-(
+... P- Variable: a
+... P- Variable: b
+... P- Variable: c
+... P- (
+... P-  Variable: d
+... P-  (
+... P-   (
+... P-    Variable: e
+... P-    (
+... P-    )
+... P-   )
+... P-  )
+... P-  Variable: f
+... P- )
+... P- Variable: g
+... P- (
+... P-  Variable: h
+... P- )
+... P-)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, h, Is_Explicit=TRUE]
+.. Reduce ((abc(d((e()))f)g(h)))
+... R-Optimise   (abc(d((e()))f)g(h))
+... R-Optimise    (d((e()))f)
+... R-Optimise      (e())
+... R-Optimise    (h)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, h, Is_Explicit=TRUE]
+-> (abc(d(e)f)g(h))
+Unbounded> 
+.. Parse # Application                                                                   
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Application', Is_Explicit=TRUE]
+.. Reduce # Application                                                                    
+... F-  [L_COMMENTS, '# Application', Is_Explicit=TRUE]
 -> # Application                                                                    
 Unbounded> 
+.. Parse abc(def)(gh)ijk                                                                 
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -515,33 +896,60 @@ Unbounded>
 ... P-Variable: i
 ... P-Variable: j
 ... P-Variable: k
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
-... F-[L_VARIABLE, h, Is_Explicit=TRUE]
-... F-[L_VARIABLE, i, Is_Explicit=TRUE]
-... F-[L_VARIABLE, j, Is_Explicit=TRUE]
-... F-[L_VARIABLE, k, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
+.. Reduce (abc(def)(gh)ijk)
+... R-Optimise  (abc(def)(gh)ijk)
+... R-Optimise   (def)
+... R-Optimise   (gh)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, h, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, i, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
+... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 -> (abc(def)(gh)ijk)
 Unbounded> 
+.. Parse III # identity of identity of identity                                          
 ... P-Synonym: I
 ... P-Synonym: I
 ... P-Synonym: I
 ... P-#
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_SYNONYM, I, Is_Explicit=TRUE]
-... F-[L_SYNONYM, I, Is_Explicit=TRUE]
-... F-[L_SYNONYM, I, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# identity of identity of identity', Is_Explicit=TRUE]
+.. Reduce (III) # identity of identity of identity                                               
+... R-Optimise  (III)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# identity of identity of identity', Is_Explicit=TRUE]
 -> (III) # identity of identity of identity                                               
 Unbounded> 
+.. Parse (abc)(def)I                                                                     
 ... P-(
 ... P- Variable: a
 ... P- Variable: b
@@ -553,17 +961,33 @@ Unbounded>
 ... P- Variable: f
 ... P-)
 ... P-Synonym: I
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_SYNONYM, I, Is_Explicit=TRUE]
--> (abc)(def)I
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+.. Reduce ((abc)(def)I)
+... R-Optimise  ((abc)(def)I)
+... R-Optimise   (abc)
+... R-Optimise   (def)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
+-> ((abc)(def)I)
 Unbounded> 
+.. Parse (abc)J(def)                                                                     
 ... P-(
 ... P- Variable: a
 ... P- Variable: b
@@ -575,31 +999,52 @@ Unbounded>
 ... P- Variable: e
 ... P- Variable: f
 ... P-)
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_SYNONYM, J, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
--> (abc)J(def)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, J, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+.. Reduce ((abc)J(def))
+... R-Optimise  ((abc)J(def))
+... R-Optimise   (abc)
+... R-Optimise   (def)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-   [L_SYNONYM, J, Is_Explicit=TRUE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+-> ((abc)J(def))
 Unbounded> 
+.. Parse # Syntax error - Unexpected parenthesis error                                   
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Syntax error - Unexpected parenthesis error', Is_Explicit=TRUE]
+.. Reduce # Syntax error - Unexpected parenthesis error                                    
+... F-  [L_COMMENTS, '# Syntax error - Unexpected parenthesis error', Is_Explicit=TRUE]
 -> # Syntax error - Unexpected parenthesis error                                    
 Unbounded> 
+.. Parse abc)                                                                            
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)
 Unbounded> 
+.. Parse abc)de                                                                          
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc)de
 Unbounded> 
+.. Parse abc(de))fg                                                                      
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -609,16 +1054,21 @@ Unbounded>
 ... P-)
 LAMBDA.SYNTAX_ERROR: Unmatched ')' in abc(de))fg
 Unbounded> 
+.. Parse # Syntax error - Missing parenthesis                                            
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Syntax error - Missing parenthesis', Is_Explicit=TRUE]
+.. Reduce # Syntax error - Missing parenthesis                                             
+... F-  [L_COMMENTS, '# Syntax error - Missing parenthesis', Is_Explicit=TRUE]
 -> # Syntax error - Missing parenthesis                                             
 Unbounded> 
+.. Parse (abc                                                                            
 ... P-(
 ... P- Variable: a
 ... P- Variable: b
 ... P- Variable: c
 LAMBDA.SYNTAX_ERROR: Missing ')' in (abc
 Unbounded> 
+.. Parse abc(def(gh)ijk                                                                  
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -635,6 +1085,7 @@ Unbounded>
 ... P- Variable: k
 LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)ijk
 Unbounded> 
+.. Parse abc(def(gh)                                                                     
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
@@ -648,20 +1099,32 @@ Unbounded>
 ... P- )
 LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 Unbounded> 
+.. Parse 
+.. Reduce 
 -> 
 Unbounded> 
+.. Parse # Functions                                                                     
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Functions', Is_Explicit=TRUE]
+.. Reduce # Functions                                                                      
+... F-  [L_COMMENTS, '# Functions', Is_Explicit=TRUE]
 -> # Functions                                                                      
 Unbounded> 
+.. Parse # ---------                                                                     
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# ---------', Is_Explicit=TRUE]
+.. Reduce # ---------                                                                      
+... F-  [L_COMMENTS, '# ---------', Is_Explicit=TRUE]
 -> # ---------                                                                      
 Unbounded> 
+.. Parse # Simple functions                                                              
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Simple functions', Is_Explicit=TRUE]
+.. Reduce # Simple functions                                                               
+... F-  [L_COMMENTS, '# Simple functions', Is_Explicit=TRUE]
 -> # Simple functions                                                               
 Unbounded> 
+.. Parse ?abc.de                                                                         
 ... P-Function - Variables
 ... P- Variable: a
 ... P- Variable: b
@@ -669,16 +1132,29 @@ Unbounded>
 ... P-Function - Expression
 ... P- Variable: d
 ... P- Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (?abc.(de))
+... R-Optimise  (?abc.(de))
+... R-Optimise   ?abc.(de)
+... R-Optimise    (de)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (?abc.(de))
 Unbounded> 
+.. Parse &abc.de                                                                         
 ... P-Function - Variables
 ... P- Variable: a
 ... P- Variable: b
@@ -686,16 +1162,29 @@ Unbounded>
 ... P-Function - Expression
 ... P- Variable: d
 ... P- Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (&abc.(de))
+... R-Optimise  (&abc.(de))
+... R-Optimise   &abc.(de)
+... R-Optimise    (de)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (&abc.(de))
 Unbounded> 
+.. Parse \abc.de                                                                         
 ... P-Function - Variables
 ... P- Variable: a
 ... P- Variable: b
@@ -703,53 +1192,255 @@ Unbounded>
 ... P-Function - Expression
 ... P- Variable: d
 ... P- Variable: e
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce (\abc.(de))
+... R-Optimise  (\abc.(de))
+... R-Optimise   \abc.(de)
+... R-Optimise    (de)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 -> (\abc.(de))
 Unbounded> 
+.. Parse # Statement optimisation                                                        
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Statement optimisation', Is_Explicit=TRUE]
+.. Reduce # Statement optimisation                                                         
+... F-  [L_COMMENTS, '# Statement optimisation', Is_Explicit=TRUE]
+-> # Statement optimisation                                                         
+Unbounded> 
+.. Parse ?x.ab(c()d)                                                                     
+... P-Function - Variables
+... P- Variable: x
+... P-Function - Expression
+... P- Variable: a
+... P- Variable: b
+... P- (
+... P-  Variable: c
+... P-  (
+... P-  )
+... P-  Variable: d
+... P- )
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+.. Reduce (?x.(ab(c()d)))
+... R-Optimise  (?x.(ab(c()d)))
+... R-Optimise   ?x.(ab(c()d))
+... R-Optimise    (ab(c()d))
+... R-Optimise     (c()d)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+-> (?x.(ab(cd)))
+Unbounded> 
+.. Parse (?x.((abc)de()))                                                                
+... P-(
+... P- Function - Variables
+... P-  Variable: x
+... P- Function - Expression
+... P-  (
+... P-   (
+... P-    Variable: a
+... P-    Variable: b
+... P-    Variable: c
+... P-   )
+... P-   Variable: d
+... P-   Variable: e
+... P-   (
+... P-   )
+... P-  )
+... P- .
+... P-)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+.. Reduce ((?x.((abc)de())))
+... R-Optimise   (?x.((abc)de()))
+... R-Optimise    ?x.((abc)de())
+... R-Optimise     ((abc)de())
+... R-Optimise      (abc)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
+-> (?x.((abc)de))
+Unbounded> 
+.. Parse (?x.a(b()c))                                                                    
+... P-(
+... P- Function - Variables
+... P-  Variable: x
+... P- Function - Expression
+... P-  Variable: a
+... P-  (
+... P-   Variable: b
+... P-   (
+... P-   )
+... P-   Variable: c
+... P-  )
+... P- .
+... P-)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_VARIABLE, c, Is_Explicit=TRUE]
+.. Reduce ((?x.(a(b()c))))
+... R-Optimise   (?x.(a(b()c)))
+... R-Optimise    ?x.(a(b()c))
+... R-Optimise     (a(b()c))
+... R-Optimise      (b()c)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+-> (?x.(a(bc)))
+Unbounded> 
+.. Parse # Standard functions                                                            
+... P-#
+... F-  [L_COMMENTS, '# Standard functions', Is_Explicit=TRUE]
+.. Reduce # Standard functions                                                             
+... F-  [L_COMMENTS, '# Standard functions', Is_Explicit=TRUE]
 -> # Standard functions                                                             
 Unbounded> 
+.. Parse ?x.x                                                                            
 ... P-Function - Variables
 ... P- Variable: x
 ... P-Function - Expression
 ... P- Variable: x
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (?x.(x))
+... R-Optimise  (?x.(x))
+... R-Optimise   ?x.(x)
+... R-Optimise    (x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (?x.(x))
 Unbounded> 
+.. Parse &x.x                                                                            
 ... P-Function - Variables
 ... P- Variable: x
 ... P-Function - Expression
 ... P- Variable: x
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (&x.(x))
+... R-Optimise  (&x.(x))
+... R-Optimise   &x.(x)
+... R-Optimise    (x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (&x.(x))
 Unbounded> 
+.. Parse \x.x                                                                            
 ... P-Function - Variables
 ... P- Variable: x
 ... P-Function - Expression
 ... P- Variable: x
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (\x.(x))
+... R-Optimise  (\x.(x))
+... R-Optimise   \x.(x)
+... R-Optimise    (x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (\x.(x))
 Unbounded> 
+.. Parse (?x.x)                                                                          
+... P-(
+... P- Function - Variables
+... P-  Variable: x
+... P- Function - Expression
+... P-  Variable: x
+... P- .
+... P-)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce ((?x.(x)))
+... R-Optimise   (?x.(x))
+... R-Optimise    ?x.(x)
+... R-Optimise     (x)
+... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+-> (?x.(x))
+Unbounded> 
+.. Parse ?f.(?x.f(xx))(?x.f(xx))                                                         
 ... P-Function - Variables
 ... P- Variable: f
 ... P-Function - Expression
@@ -775,27 +1466,58 @@ Unbounded>
 ... P-   )
 ... P-  .
 ... P- )
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (?f.(?x.(f(xx)))(?x.(f(xx))))
+... R-Optimise  (?f.(?x.(f(xx)))(?x.(f(xx))))
+... R-Optimise   ?f.(?x.(f(xx)))(?x.(f(xx)))
+... R-Optimise    (?x.(f(xx)))
+... R-Optimise     ?x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... R-Optimise    (?x.(f(xx)))
+... R-Optimise     ?x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (?f.(?x.(f(xx)))(?x.(f(xx))))
 Unbounded> 
+.. Parse &f.(&x.f(xx))(&x.f(xx))                                                         
 ... P-Function - Variables
 ... P- Variable: f
 ... P-Function - Expression
@@ -821,27 +1543,58 @@ Unbounded>
 ... P-   )
 ... P-  .
 ... P- )
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (&f.(&x.(f(xx)))(&x.(f(xx))))
+... R-Optimise  (&f.(&x.(f(xx)))(&x.(f(xx))))
+... R-Optimise   &f.(&x.(f(xx)))(&x.(f(xx)))
+... R-Optimise    (&x.(f(xx)))
+... R-Optimise     &x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... R-Optimise    (&x.(f(xx)))
+... R-Optimise     &x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (&f.(&x.(f(xx)))(&x.(f(xx))))
 Unbounded> 
+.. Parse \f.(\x.f(xx))(\x.f(xx))                                                         
 ... P-Function - Variables
 ... P- Variable: f
 ... P-Function - Expression
@@ -867,27 +1620,58 @@ Unbounded>
 ... P-   )
 ... P-  .
 ... P- )
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (\f.(\x.(f(xx)))(\x.(f(xx))))
+... R-Optimise  (\f.(\x.(f(xx)))(\x.(f(xx))))
+... R-Optimise   \f.(\x.(f(xx)))(\x.(f(xx)))
+... R-Optimise    (\x.(f(xx)))
+... R-Optimise     \x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... R-Optimise    (\x.(f(xx)))
+... R-Optimise     \x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (\f.(\x.(f(xx)))(\x.(f(xx))))
 Unbounded> 
+.. Parse &f.(?x.f(xx))(\x.f(xx))                                                         
 ... P-Function - Variables
 ... P- Variable: f
 ... P-Function - Expression
@@ -913,102 +1697,183 @@ Unbounded>
 ... P-   )
 ... P-  .
 ... P- )
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, &, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, \, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (&f.(?x.(f(xx)))(\x.(f(xx))))
+... R-Optimise  (&f.(?x.(f(xx)))(\x.(f(xx))))
+... R-Optimise   &f.(?x.(f(xx)))(\x.(f(xx)))
+... R-Optimise    (?x.(f(xx)))
+... R-Optimise     ?x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... R-Optimise    (\x.(f(xx)))
+... R-Optimise     \x.(f(xx))
+... R-Optimise      (f(xx))
+... R-Optimise       (xx)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, \, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (&f.(?x.(f(xx)))(\x.(f(xx))))
 Unbounded> 
+.. Parse # Unbounded variables                                                           
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Unbounded variables', Is_Explicit=TRUE]
+.. Reduce # Unbounded variables                                                            
+... F-  [L_COMMENTS, '# Unbounded variables', Is_Explicit=TRUE]
 -> # Unbounded variables                                                            
 Unbounded> 
+.. Parse ?x.xy                                                                           
 ... P-Function - Variables
 ... P- Variable: x
 ... P-Function - Expression
 ... P- Variable: x
 ... P- Variable: y
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, y, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, y, Is_Explicit=TRUE]
+.. Reduce (?x.(xy))
+... R-Optimise  (?x.(xy))
+... R-Optimise   ?x.(xy)
+... R-Optimise    (xy)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, y, Is_Explicit=TRUE]
 -> (?x.(xy))
 Unbounded> 
+.. Parse ?xy.x                                                                           
 ... P-Function - Variables
 ... P- Variable: x
 ... P- Variable: y
 ... P-Function - Expression
 ... P- Variable: x
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, y, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (?xy.(x))
+... R-Optimise  (?xy.(x))
+... R-Optimise   ?xy.(x)
+... R-Optimise    (x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, y, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (?xy.(x))
 Unbounded> 
+.. Parse # Warning - Null function                                                       
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Warning - Null function', Is_Explicit=TRUE]
+.. Reduce # Warning - Null function                                                        
+... F-  [L_COMMENTS, '# Warning - Null function', Is_Explicit=TRUE]
 -> # Warning - Null function                                                        
 Unbounded> 
+.. Parse ?abc                                                                            
 ... P-Function - Variables
 ... P- Variable: a
 ... P- Variable: b
 ... P- Variable: c
 LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?abc
 Unbounded> 
+.. Parse ?                                                                               
 ... P-Function - Variables
 LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?
 Unbounded> 
+.. Parse ?(abc)                                                                          
 ... P-Function - Variables
 LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?(abc)
 Unbounded> 
+.. Parse # Syntax error - Missing lambda                                                 
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Syntax error - Missing lambda', Is_Explicit=TRUE]
+.. Reduce # Syntax error - Missing lambda                                                  
+... F-  [L_COMMENTS, '# Syntax error - Missing lambda', Is_Explicit=TRUE]
 -> # Syntax error - Missing lambda                                                  
 Unbounded> 
+.. Parse abc.de                                                                          
 ... P-Variable: a
 ... P-Variable: b
 ... P-Variable: c
 LAMBDA.SYNTAX_ERROR: Unexpected '.' - no function declared in abc.de
 Unbounded> 
+.. Parse 
+.. Reduce 
 -> 
 Unbounded> 
+.. Parse # Synonyms                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Synonyms', Is_Explicit=TRUE]
+.. Reduce # Synonyms                                                                       
+... F-  [L_COMMENTS, '# Synonyms', Is_Explicit=TRUE]
 -> # Synonyms                                                                       
 Unbounded> 
+.. Parse # --------                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
+.. Reduce # --------                                                                       
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
+.. Parse # Assignment - dummy values                                                     
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Assignment - dummy values', Is_Explicit=TRUE]
+.. Reduce # Assignment - dummy values                                                      
+... F-  [L_COMMENTS, '# Assignment - dummy values', Is_Explicit=TRUE]
 -> # Assignment - dummy values                                                      
 Unbounded> 
+.. Parse A=                                                                              
 ... P-Synonym: A
 ... P-= 
-... F-[L_DEFINITION, A, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
--> A=()
+... F-  [L_DEFINITION, A, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+.. Reduce A=()
+... R-Optimise  A=()
+... F-  [L_DEFINITION, A, Is_Explicit=FALSE]
+-> A=
 Unbounded> 
+.. Parse B=abcdef                                                                        
 ... P-Synonym: B
 ... P-= 
 ... P-Variable: a
@@ -1017,16 +1882,28 @@ Unbounded>
 ... P-Variable: d
 ... P-Variable: e
 ... P-Variable: f
-... F-[L_DEFINITION, B, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, B, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+.. Reduce B=(abcdef)
+... R-Optimise  B=(abcdef)
+... R-Optimise   (abcdef)
+... F-  [L_DEFINITION, B, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 -> B=(abcdef)
 Unbounded> 
+.. Parse C=?abc.defg                                                                     
 ... P-Synonym: C
 ... P-= 
 ... P-Function - Variables
@@ -1038,35 +1915,62 @@ Unbounded>
 ... P- Variable: e
 ... P- Variable: f
 ... P- Variable: g
-... F-[L_DEFINITION, C, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, C, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, g, Is_Explicit=TRUE]
+.. Reduce C=(?abc.(defg))
+... R-Optimise  C=(?abc.(defg))
+... R-Optimise   (?abc.(defg))
+... R-Optimise    ?abc.(defg)
+... R-Optimise     (defg)
+... F-  [L_DEFINITION, C, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, g, Is_Explicit=TRUE]
 -> C=(?abc.(defg))
 Unbounded> 
+.. Parse D=# Delete D                                                                    
 ... P-Synonym: D
 ... P-= 
 ... P-#
-... F-[L_DEFINITION, D, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
--> D=() # Delete D                                                                       
+... F-  [L_DEFINITION, D, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_COMMENTS, '# Delete D', Is_Explicit=TRUE]
+.. Reduce D=() # Delete D                                                                       
+... R-Optimise  D=() # Delete D                                                                       
+... F-  [L_DEFINITION, D, Is_Explicit=FALSE]
+... F-   [L_COMMENTS, '# Delete D', Is_Explicit=TRUE]
+-> D= # Delete D                                                                       
 Unbounded> 
+.. Parse E= # Delete E                                                                   
 ... P-Synonym: E
 ... P-= 
 ... P-#
-... F-[L_DEFINITION, E, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
--> E=() # Delete E                                                                       
+... F-  [L_DEFINITION, E, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_COMMENTS, '# Delete E', Is_Explicit=TRUE]
+.. Reduce E=() # Delete E                                                                       
+... R-Optimise  E=() # Delete E                                                                       
+... F-  [L_DEFINITION, E, Is_Explicit=FALSE]
+... F-   [L_COMMENTS, '# Delete E', Is_Explicit=TRUE]
+-> E= # Delete E                                                                       
 Unbounded> 
+.. Parse F=(abc)def                                                                      
 ... P-Synonym: F
 ... P-= 
 ... P-(
@@ -1077,24 +1981,46 @@ Unbounded>
 ... P-Variable: d
 ... P-Variable: e
 ... P-Variable: f
-... F-[L_DEFINITION, F, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
--> F=(abc)def
+... F-  [L_DEFINITION, F, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+.. Reduce F=((abc)def)
+... R-Optimise  F=((abc)def)
+... R-Optimise   ((abc)def)
+... R-Optimise    (abc)
+... F-  [L_DEFINITION, F, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+-> F=((abc)def)
 Unbounded> 
+.. Parse G=H                                                                             
 ... P-Synonym: G
 ... P-= 
 ... P-Synonym: H
-... F-[L_DEFINITION, G, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_SYNONYM, H, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, G, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_SYNONYM, H, Is_Explicit=TRUE]
+.. Reduce G=(H)
+... R-Optimise  G=(H)
+... R-Optimise   (H)
+... F-  [L_DEFINITION, G, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_SYNONYM, H, Is_Explicit=TRUE]
 -> G=(H)
 Unbounded> 
+.. Parse I=ab(cd)                                                                        
 ... P-Synonym: I
 ... P-= 
 ... P-Variable: a
@@ -1103,15 +2029,27 @@ Unbounded>
 ... P- Variable: c
 ... P- Variable: d
 ... P-)
-... F-[L_DEFINITION, I, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+.. Reduce I=(ab(cd))
+... R-Optimise  I=(ab(cd))
+... R-Optimise   (ab(cd))
+... R-Optimise    (cd)
+... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 -> I=(ab(cd))
 Unbounded> 
+.. Parse J=ab(cd)e                                                                       
 ... P-Synonym: J
 ... P-= 
 ... P-Variable: a
@@ -1121,16 +2059,29 @@ Unbounded>
 ... P- Variable: d
 ... P-)
 ... P-Variable: e
-... F-[L_DEFINITION, J, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, J, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce J=(ab(cd)e)
+... R-Optimise  J=(ab(cd)e)
+... R-Optimise   (ab(cd)e)
+... R-Optimise    (cd)
+... F-  [L_DEFINITION, J, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 -> J=(ab(cd)e)
 Unbounded> 
+.. Parse K=ab(?c.d)e                                                                     
 ... P-Synonym: K
 ... P-= 
 ... P-Variable: a
@@ -1143,22 +2094,73 @@ Unbounded>
 ... P- .
 ... P-)
 ... P-Variable: e
-... F-[L_DEFINITION, K, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, K, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
+.. Reduce K=(ab(?c.(d))e)
+... R-Optimise  K=(ab(?c.(d))e)
+... R-Optimise   (ab(?c.(d))e)
+... R-Optimise    (?c.(d))
+... R-Optimise     ?c.(d)
+... R-Optimise      (d)
+... F-  [L_DEFINITION, K, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 -> K=(ab(?c.(d))e)
 Unbounded> 
+.. Parse L = asdf # space reduction                                                      
+... P-Synonym: L
+... P-= 
+... P-Variable: a
+... P-Variable: s
+... P-Variable: d
+... P-Variable: f
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, L, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# space reduction', Is_Explicit=TRUE]
+.. Reduce L=(asdf) # space reduction                                                                
+... R-Optimise  L=(asdf) # space reduction                                                                
+... R-Optimise   (asdf)
+... F-  [L_DEFINITION, L, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, s, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# space reduction', Is_Explicit=TRUE]
+-> L=(asdf) # space reduction                                                                
+Unbounded> 
+.. Parse 
+.. Reduce 
+-> 
+Unbounded> 
+.. Parse # Assignment - standard functions                                               
+... P-#
+... F-  [L_COMMENTS, '# Assignment - standard functions', Is_Explicit=TRUE]
+.. Reduce # Assignment - standard functions                                                
+... F-  [L_COMMENTS, '# Assignment - standard functions', Is_Explicit=TRUE]
 -> # Assignment - standard functions                                                
 Unbounded> 
+.. Parse I=?x.x # Identity                                                               
 ... P-Synonym: I
 ... P-= 
 ... P-Function - Variables
@@ -1166,15 +2168,28 @@ Unbounded>
 ... P-Function - Expression
 ... P- Variable: x
 ... P- #
-... F-[L_DEFINITION, I, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# Identity', Is_Explicit=TRUE]
+.. Reduce I=(?x.(x)) # Identity                                                                       
+... R-Optimise  I=(?x.(x)) # Identity                                                                       
+... R-Optimise   (?x.(x))
+... R-Optimise    ?x.(x)
+... R-Optimise     (x)
+... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# Identity', Is_Explicit=TRUE]
 -> I=(?x.(x)) # Identity                                                                       
 Unbounded> 
+.. Parse Y=?f.(?x.f(xx))(?x.f(xx)) # Y Combinator                                        
 ... P-Synonym: Y
 ... P-= 
 ... P-Function - Variables
@@ -1203,257 +2218,310 @@ Unbounded>
 ... P-  .
 ... P- )
 ... P- #
-... F-[L_DEFINITION, Y, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_DEFINITION, Y, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# Y Combinator', Is_Explicit=TRUE]
+.. Reduce Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
+... R-Optimise  Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
+... R-Optimise   (?f.(?x.(f(xx)))(?x.(f(xx))))
+... R-Optimise    ?f.(?x.(f(xx)))(?x.(f(xx)))
+... R-Optimise     (?x.(f(xx)))
+... R-Optimise      ?x.(f(xx))
+... R-Optimise       (f(xx))
+... R-Optimise        (xx)
+... R-Optimise     (?x.(f(xx)))
+... R-Optimise      ?x.(f(xx))
+... R-Optimise       (f(xx))
+... R-Optimise        (xx)
+... F-  [L_DEFINITION, Y, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-       [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-        [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# Y Combinator', Is_Explicit=TRUE]
 -> Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
 Unbounded> 
+.. Parse 
+.. Reduce 
+-> 
+Unbounded> 
+.. Parse # Assignment - statement optimisation                                           
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Assignment - statement optimisation', Is_Explicit=TRUE]
+.. Reduce # Assignment - statement optimisation                                            
+... F-  [L_COMMENTS, '# Assignment - statement optimisation', Is_Explicit=TRUE]
+-> # Assignment - statement optimisation                                            
+Unbounded> 
+.. Parse M= abc()d                                                                       
+... P-Synonym: M
+... P-= 
+... P-Variable: a
+... P-Variable: b
+... P-Variable: c
+... P-(
+... P-)
+... P-Variable: d
+... F-  [L_DEFINITION, M, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+.. Reduce M=(abc()d)
+... R-Optimise  M=(abc()d)
+... R-Optimise   (abc()d)
+... F-  [L_DEFINITION, M, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+-> M=(abcd)
+Unbounded> 
+.. Parse N= (abc()d) # magical stuff                                                     
+... P-Synonym: N
+... P-= 
+... P-(
+... P- Variable: a
+... P- Variable: b
+... P- Variable: c
+... P- (
+... P- )
+... P- Variable: d
+... P-)
+... P-#
+... F-  [L_DEFINITION, N, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# magical stuff', Is_Explicit=TRUE]
+.. Reduce N=((abc()d)) # magical stuff                                                                  
+... R-Optimise  N=((abc()d)) # magical stuff                                                                  
+... R-Optimise    (abc()d)
+... F-  [L_DEFINITION, N, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-   [L_COMMENTS, '# magical stuff', Is_Explicit=TRUE]
+-> N=(abcd) # magical stuff                                                                  
+Unbounded> 
+.. Parse O= (abc(d((e()))f)g(h))                                                         
+... P-Synonym: O
+... P-= 
+... P-(
+... P- Variable: a
+... P- Variable: b
+... P- Variable: c
+... P- (
+... P-  Variable: d
+... P-  (
+... P-   (
+... P-    Variable: e
+... P-    (
+... P-    )
+... P-   )
+... P-  )
+... P-  Variable: f
+... P- )
+... P- Variable: g
+... P- (
+... P-  Variable: h
+... P- )
+... P-)
+... F-  [L_DEFINITION, O, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-        [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, h, Is_Explicit=TRUE]
+.. Reduce O=((abc(d((e()))f)g(h)))
+... R-Optimise  O=((abc(d((e()))f)g(h)))
+... R-Optimise    (abc(d((e()))f)g(h))
+... R-Optimise     (d((e()))f)
+... R-Optimise       (e())
+... R-Optimise     (h)
+... F-  [L_DEFINITION, O, Is_Explicit=FALSE]
+... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
+... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-      [L_VARIABLE, e, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
+... F-    [L_VARIABLE, g, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+... F-     [L_VARIABLE, h, Is_Explicit=TRUE]
+-> O=(abc(d(e)f)g(h))
+Unbounded> 
+.. Parse 
+.. Reduce 
+-> 
+Unbounded> 
+.. Parse # Assignment - bad assignment                                                   
+... P-#
+... F-  [L_COMMENTS, '# Assignment - bad assignment', Is_Explicit=TRUE]
+.. Reduce # Assignment - bad assignment                                                    
+... F-  [L_COMMENTS, '# Assignment - bad assignment', Is_Explicit=TRUE]
 -> # Assignment - bad assignment                                                    
 Unbounded> 
+.. Parse ABC=abc                                                                         
 ... P-Synonym: A
 ... P-Synonym: B
 ... P-Synonym: C
 LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in ABC=abc
 Unbounded> 
+.. Parse A=B=C                                                                           
 ... P-Synonym: A
 ... P-= 
 ... P-Synonym: B
 LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in A=B=C
 Unbounded> 
+.. Parse a=bcd                                                                           
 ... P-Variable: a
 LAMBDA.SYNTAX_ERROR: Unexpected Synonym assignment in a=bcd
 Unbounded> 
+.. Parse # Buffer overflow                                                               
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
+.. Reduce # Buffer overflow                                                                
+... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 -> # Buffer overflow                                                                
 Unbounded> 
+.. Parse ?x.x
 ... P-Function - Variables
 ... P- Variable: x
 ... P-Function - Expression
+... P- Variable: x
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+.. Reduce (?x.(x))
+... R-Optimise  (?x.(x))
+... R-Optimise   ?x.(x)
+... R-Optimise    (x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
+-> (?x.(x))
+Unbounded> 
+.. Parse ?x.
+... P-Function - Variables
+... P- Variable: x
 PROGRAM_ERROR: Buffer overflow in ?x.
 Unbounded> 
+.. Parse ?x
+... P-Function - Variables
+... P- Variable: x
+PROGRAM_ERROR: Buffer overflow in ?x
+Unbounded> 
+.. Parse ?
+... P-Function - Variables
+PROGRAM_ERROR: Buffer overflow in ?
+Unbounded> 
+.. Parse # Commands                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# Commands', Is_Explicit=TRUE]
+.. Reduce # Commands                                                                       
+... F-  [L_COMMENTS, '# Commands', Is_Explicit=TRUE]
 -> # Commands                                                                       
 Unbounded> 
+.. Parse # --------                                                                      
 ... P-#
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
+.. Reduce # --------                                                                       
+... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
 .. List saved expressions
-... F-[L_DEFINITION, A, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
 A=()
-... F-[L_DEFINITION, B, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
 B=(abcdef)
-... F-[L_DEFINITION, C, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
 C=(?abc.(defg))
-... F-[L_DEFINITION, D, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 D=() # Delete D                                                                       
-... F-[L_DEFINITION, E, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 E=() # Delete E                                                                       
-... F-[L_DEFINITION, F, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-F=(abc)def
-... F-[L_DEFINITION, G, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_SYNONYM, H, Is_Explicit=TRUE]
+F=((abc)def)
 G=(H)
-... F-[L_DEFINITION, I, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 I=(?x.(x)) # Identity                                                                       
-... F-[L_DEFINITION, J, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
 J=(ab(cd)e)
-... F-[L_DEFINITION, K, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
 K=(ab(?c.(d))e)
-... F-[L_DEFINITION, Y, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+L=(asdf) # space reduction                                                                
+M=(abc()d)
+N=((abc()d)) # magical stuff                                                                  
+O=((abc(d((e()))f)g(h)))
 Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
 Unbounded> 
 .. Remove synonym
-... F-[L_DEFINITION, D, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 .. Removing D=() # Delete D                                                                       
-... F-[L_DEFINITION, E, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 .. Removing E=() # Delete E                                                                       
 Unbounded> 
 .. List saved expressions
-... F-[L_DEFINITION, A, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
 A=()
-... F-[L_DEFINITION, B, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
 B=(abcdef)
-... F-[L_DEFINITION, C, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_VARIABLE, g, Is_Explicit=TRUE]
 C=(?abc.(defg))
-... F-[L_DEFINITION, F, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-F=(abc)def
-... F-[L_DEFINITION, G, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_SYNONYM, H, Is_Explicit=TRUE]
+F=((abc)def)
 G=(H)
-... F-[L_DEFINITION, I, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
 I=(?x.(x)) # Identity                                                                       
-... F-[L_DEFINITION, J, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
 J=(ab(cd)e)
-... F-[L_DEFINITION, K, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, a, Is_Explicit=TRUE]
-... F-[L_VARIABLE, b, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, c, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, d, Is_Explicit=TRUE]
-... F-[L_VARIABLE, e, Is_Explicit=TRUE]
 K=(ab(?c.(d))e)
-... F-[L_DEFINITION, Y, Is_Explicit=FALSE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_FUNCTION, ?, Is_Explicit=FALSE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=FALSE]
-... F-[L_VARIABLE, f, Is_Explicit=TRUE]
-... F-[L_EXPRESSION, _, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_VARIABLE, x, Is_Explicit=TRUE]
-... F-[L_COMMENTS, #, Is_Explicit=TRUE]
+L=(asdf) # space reduction                                                                
+M=(abc()d)
+N=((abc()d)) # magical stuff                                                                  
+O=((abc(d((e()))f)g(h)))
 Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
 Unbounded> 
 EXIT | QUIT     : Exit Unbounded
