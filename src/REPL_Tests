@@ -80,10 +80,11 @@ abc(def(gh)
 # Unbounded variables
 ?x.xy
 ?xy.x
-# Warning - Null function
+# Warning - Null function - Are these valid Lambda syntax or is this an overkill?
 ?abc
 ?
 ?(abc)
+?x.()
 # Syntax error - Missing lambda
 abc.de
 

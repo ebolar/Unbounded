@@ -2,6 +2,26 @@
 -- ---------------------------
 -- Parses and reduces Lamdba Calculus statements.
 --
+-- What is the strategy for reducing an expression?
+-- - Strict evaluation is bottom up (C, Fortran, Java, Ada, etc)
+-- - Lazy evaluation is top down - left to right (Haskel, Lambda Calculus)
+--
+-- Start with lazy evaluation. Come back and do strict evaluation as an enhancement.
+--
+-- In what order do we perform alpha substitution, beta reduction, eta reduction
+-- - beta and eta reduction can be performed in any order - result is the same
+-- - alpha substitution renames bound variables so that they do not overlap with free variables being substituted
+--   (Barendregt Variable Convention).  Need to check this prior to performing a beta substitution.
+--
+-- Reduction is iterative.  What is the stopping condition?
+-- - A Normal form cannot be further reduced.  Next form = last form, ie Alpha-Equivalence.
+-- - Is beta normal if cannot be beta reduced
+-- - Is eta normal if cannot be eta reduced
+-- - can end up in an infinite loop
+-- - there may be more than one normal form
+--
+-- Simplest stopping condition is if the expression is just Beta Normal.
+-- More complex stopping condition is if the expression is both Beta Normal & Eta Normal.  Could this lead to loops?  Is this useful?
 --
 
 with Ada.Characters.Handling; use Ada.Characters.Handling;
@@ -27,7 +47,11 @@ Package body Lambda_Reducer is
       
       -- optimise the tree starting at the root
       Optimise(Inst, Instructions.Root(Inst));
+      Log(Log_Reduce, "Optimise -> " , Inst);
 
+      loop
+         exit when true;
+      end loop;
       return Inst;
    end reduce;
 
@@ -42,9 +66,9 @@ Package body Lambda_Reducer is
       Sub_Expression : Instructions.Cursor;
    begin
       -- OK this is starting to get ugly.  Urgently need an Instructions ADT.
-      if not Instructions.is_Root(Curs) then
-         Log(Log_Reduce, "Optimise" & Indent(Natural(Instructions.Depth(Curs))), I, Curs);
-      end if;
+      -- if not Instructions.is_Root(Curs) then
+      --    Log(Log_Reduce, "Optimise" & Indent(Natural(Instructions.Depth(Curs))), I, Curs);
+      -- end if;
  
       if not Instructions.is_Empty(I) 
          and not Instructions."=" (Curs, Instructions.No_Element)

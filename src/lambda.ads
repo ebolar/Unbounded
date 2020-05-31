@@ -42,16 +42,16 @@ Package Lambda is
       end case;
    end record;
 
-   package Instructions is new Ada.Containers.Multiway_Trees
-     (Element_Type => Element_Record);
-   use Instructions;
-
    -- Exceptions
    Syntax_Error : exception;
    Recursion_Overflow : exception;
    Internal_Error : exception;
 
    Package SU renames Ada.Strings.Unbounded;
+   package Instructions is new Ada.Containers.Multiway_Trees
+     (Element_Type => Element_Record);
+   use Instructions;
+
 
    function format ( I: Instructions.Tree ) return String;
    function format ( I: Instructions.Tree; Curs : Instructions.Cursor ) return String;

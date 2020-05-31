@@ -45,6 +45,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
 .. Reduce #                                                                                
+... R-Optimise -> #                                                                                
 ... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
 -> #                                                                                
 Unbounded> 
@@ -52,6 +53,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Comments', Is_Explicit=TRUE]
 .. Reduce # Comments                                                                       
+... R-Optimise -> # Comments                                                                       
 ... F-  [L_COMMENTS, '# Comments', Is_Explicit=TRUE]
 -> # Comments                                                                       
 Unbounded> 
@@ -59,6 +61,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 .. Reduce # --------                                                                       
+... R-Optimise -> # --------                                                                       
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
@@ -66,6 +69,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 .. Reduce # Trailing comments                                                              
+... R-Optimise -> # Trailing comments                                                              
 ... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 -> # Trailing comments                                                              
 Unbounded> 
@@ -82,7 +86,7 @@ Unbounded>
 ... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 .. Reduce (asdf) # Trailing comments                                                              
-... R-Optimise  (asdf)
+... R-Optimise -> (asdf) # Trailing comments                                                              
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
@@ -104,7 +108,7 @@ Unbounded>
 ... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-  [L_COMMENTS, '# Trailing comments', Is_Explicit=TRUE]
 .. Reduce (asdf) # Trailing comments                                                              
-... R-Optimise  (asdf)
+... R-Optimise -> (asdf) # Trailing comments                                                              
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
@@ -140,7 +144,7 @@ Unbounded>
 ... F-   [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-  [L_COMMENTS, '#', Is_Explicit=TRUE]
 .. Reduce (asdf) #                                                                                
-... R-Optimise  (asdf)
+... R-Optimise -> (asdf) #                                                                                
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, s, Is_Explicit=TRUE]
@@ -153,17 +157,20 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Empty line', Is_Explicit=TRUE]
 .. Reduce # Empty line                                                                     
+... R-Optimise -> # Empty line                                                                     
 ... F-  [L_COMMENTS, '# Empty line', Is_Explicit=TRUE]
 -> # Empty line                                                                     
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Buffer overflow                                                               
 ... P-#
 ... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 .. Reduce # Buffer overflow                                                                
+... R-Optimise -> # Buffer overflow                                                                
 ... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 -> # Buffer overflow                                                                
 Unbounded> 
@@ -326,7 +333,7 @@ Unbounded>
 ... F-   [L_VARIABLE, y, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, z, Is_Explicit=TRUE]
 .. Reduce (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
-... R-Optimise  (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
+... R-Optimise -> (abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -412,6 +419,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Expressions', Is_Explicit=TRUE]
 .. Reduce # Expressions                                                                    
+... R-Optimise -> # Expressions                                                                    
 ... F-  [L_COMMENTS, '# Expressions', Is_Explicit=TRUE]
 -> # Expressions                                                                    
 Unbounded> 
@@ -419,6 +427,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# -----------', Is_Explicit=TRUE]
 .. Reduce # -----------                                                                    
+... R-Optimise -> # -----------                                                                    
 ... F-  [L_COMMENTS, '# -----------', Is_Explicit=TRUE]
 -> # -----------                                                                    
 Unbounded> 
@@ -426,6 +435,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Null expression', Is_Explicit=TRUE]
 .. Reduce # Null expression                                                                
+... R-Optimise -> # Null expression                                                                
 ... F-  [L_COMMENTS, '# Null expression', Is_Explicit=TRUE]
 -> # Null expression                                                                
 Unbounded> 
@@ -433,6 +443,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Simple expression', Is_Explicit=TRUE]
 .. Reduce # Simple expression                                                              
+... R-Optimise -> # Simple expression                                                              
 ... F-  [L_COMMENTS, '# Simple expression', Is_Explicit=TRUE]
 -> # Simple expression                                                              
 Unbounded> 
@@ -449,7 +460,7 @@ Unbounded>
 ... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (abcde)
-... R-Optimise  (abcde)
+... R-Optimise -> (abcde)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -462,6 +473,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Whitespace removal', Is_Explicit=TRUE]
 .. Reduce # Whitespace removal                                                             
+... R-Optimise -> # Whitespace removal                                                             
 ... F-  [L_COMMENTS, '# Whitespace removal', Is_Explicit=TRUE]
 -> # Whitespace removal                                                             
 Unbounded> 
@@ -478,7 +490,7 @@ Unbounded>
 ... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (abcde)
-... R-Optimise  (abcde)
+... R-Optimise -> (abcde)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -504,7 +516,7 @@ Unbounded>
 ... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (abcde)
-... R-Optimise  (abcde)
+... R-Optimise -> (abcde)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -526,6 +538,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Nested expression', Is_Explicit=TRUE]
 .. Reduce # Nested expression                                                              
+... R-Optimise -> # Nested expression                                                              
 ... F-  [L_COMMENTS, '# Nested expression', Is_Explicit=TRUE]
 -> # Nested expression                                                              
 Unbounded> 
@@ -541,7 +554,7 @@ Unbounded>
 ... F-    [L_VARIABLE, b, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, c, Is_Explicit=TRUE]
 .. Reduce ((abc))
-... R-Optimise   (abc)
+... R-Optimise -> (abc)
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -564,8 +577,7 @@ Unbounded>
 ... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce ((abc)de)
-... R-Optimise  ((abc)de)
-... R-Optimise   (abc)
+... R-Optimise -> ((abc)de)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -598,9 +610,7 @@ Unbounded>
 ... F-     [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, g, Is_Explicit=TRUE]
 .. Reduce (abc(de(fg)))
-... R-Optimise  (abc(de(fg)))
-... R-Optimise   (de(fg))
-... R-Optimise    (fg)
+... R-Optimise -> (abc(de(fg)))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -644,9 +654,7 @@ Unbounded>
 ... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 .. Reduce (abc(de(fg))hijk)
-... R-Optimise  (abc(de(fg))hijk)
-... R-Optimise   (de(fg))
-... R-Optimise    (fg)
+... R-Optimise -> (abc(de(fg))hijk)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -694,9 +702,7 @@ Unbounded>
 ... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 .. Reduce (abc(de(fgh)i)jk)
-... R-Optimise  (abc(de(fgh)i)jk)
-... R-Optimise   (de(fgh)i)
-... R-Optimise    (fgh)
+... R-Optimise -> (abc(de(fgh)i)jk)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -748,13 +754,7 @@ Unbounded>
 ... F-        [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-         [L_VARIABLE, g, Is_Explicit=TRUE]
 .. Reduce (a(b(c(d(e(f(g)))))))
-... R-Optimise  (a(b(c(d(e(f(g)))))))
-... R-Optimise   (b(c(d(e(f(g))))))
-... R-Optimise    (c(d(e(f(g)))))
-... R-Optimise     (d(e(f(g))))
-... R-Optimise      (e(f(g)))
-... R-Optimise       (f(g))
-... R-Optimise        (g)
+... R-Optimise -> (a(b(c(d(e(f(g)))))))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
@@ -785,7 +785,7 @@ Unbounded>
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, d, Is_Explicit=TRUE]
 .. Reduce (abc()d)
-... R-Optimise  (abc()d)
+... R-Optimise -> (abcd)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -810,7 +810,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
 .. Reduce ((abc()d))
-... R-Optimise   (abc()d)
+... R-Optimise -> (abcd)
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -855,10 +855,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, h, Is_Explicit=TRUE]
 .. Reduce ((abc(d((e()))f)g(h)))
-... R-Optimise   (abc(d((e()))f)g(h))
-... R-Optimise    (d((e()))f)
-... R-Optimise      (e())
-... R-Optimise    (h)
+... R-Optimise -> (abc(d(e)f)g(h))
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -877,6 +874,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Application', Is_Explicit=TRUE]
 .. Reduce # Application                                                                    
+... R-Optimise -> # Application                                                                    
 ... F-  [L_COMMENTS, '# Application', Is_Explicit=TRUE]
 -> # Application                                                                    
 Unbounded> 
@@ -911,9 +909,7 @@ Unbounded>
 ... F-   [L_VARIABLE, j, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, k, Is_Explicit=TRUE]
 .. Reduce (abc(def)(gh)ijk)
-... R-Optimise  (abc(def)(gh)ijk)
-... R-Optimise   (def)
-... R-Optimise   (gh)
+... R-Optimise -> (abc(def)(gh)ijk)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_VARIABLE, a, Is_Explicit=TRUE]
 ... F-   [L_VARIABLE, b, Is_Explicit=TRUE]
@@ -941,7 +937,7 @@ Unbounded>
 ... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
 ... F-  [L_COMMENTS, '# identity of identity of identity', Is_Explicit=TRUE]
 .. Reduce (III) # identity of identity of identity                                               
-... R-Optimise  (III)
+... R-Optimise -> (III) # identity of identity of identity                                               
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
 ... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
@@ -972,9 +968,7 @@ Unbounded>
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-   [L_SYNONYM, I, Is_Explicit=TRUE]
 .. Reduce ((abc)(def)I)
-... R-Optimise  ((abc)(def)I)
-... R-Optimise   (abc)
-... R-Optimise   (def)
+... R-Optimise -> ((abc)(def)I)
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1010,9 +1004,7 @@ Unbounded>
 ... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 .. Reduce ((abc)J(def))
-... R-Optimise  ((abc)J(def))
-... R-Optimise   (abc)
-... R-Optimise   (def)
+... R-Optimise -> ((abc)J(def))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1029,6 +1021,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Syntax error - Unexpected parenthesis error', Is_Explicit=TRUE]
 .. Reduce # Syntax error - Unexpected parenthesis error                                    
+... R-Optimise -> # Syntax error - Unexpected parenthesis error                                    
 ... F-  [L_COMMENTS, '# Syntax error - Unexpected parenthesis error', Is_Explicit=TRUE]
 -> # Syntax error - Unexpected parenthesis error                                    
 Unbounded> 
@@ -1058,6 +1051,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Syntax error - Missing parenthesis', Is_Explicit=TRUE]
 .. Reduce # Syntax error - Missing parenthesis                                             
+... R-Optimise -> # Syntax error - Missing parenthesis                                             
 ... F-  [L_COMMENTS, '# Syntax error - Missing parenthesis', Is_Explicit=TRUE]
 -> # Syntax error - Missing parenthesis                                             
 Unbounded> 
@@ -1101,12 +1095,14 @@ LAMBDA.SYNTAX_ERROR: Missing ')' in abc(def(gh)
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Functions                                                                     
 ... P-#
 ... F-  [L_COMMENTS, '# Functions', Is_Explicit=TRUE]
 .. Reduce # Functions                                                                      
+... R-Optimise -> # Functions                                                                      
 ... F-  [L_COMMENTS, '# Functions', Is_Explicit=TRUE]
 -> # Functions                                                                      
 Unbounded> 
@@ -1114,6 +1110,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# ---------', Is_Explicit=TRUE]
 .. Reduce # ---------                                                                      
+... R-Optimise -> # ---------                                                                      
 ... F-  [L_COMMENTS, '# ---------', Is_Explicit=TRUE]
 -> # ---------                                                                      
 Unbounded> 
@@ -1121,6 +1118,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Simple functions', Is_Explicit=TRUE]
 .. Reduce # Simple functions                                                               
+... R-Optimise -> # Simple functions                                                               
 ... F-  [L_COMMENTS, '# Simple functions', Is_Explicit=TRUE]
 -> # Simple functions                                                               
 Unbounded> 
@@ -1141,9 +1139,7 @@ Unbounded>
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (?abc.(de))
-... R-Optimise  (?abc.(de))
-... R-Optimise   ?abc.(de)
-... R-Optimise    (de)
+... R-Optimise -> (?abc.(de))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1171,9 +1167,7 @@ Unbounded>
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (&abc.(de))
-... R-Optimise  (&abc.(de))
-... R-Optimise   &abc.(de)
-... R-Optimise    (de)
+... R-Optimise -> (&abc.(de))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1201,9 +1195,7 @@ Unbounded>
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce (\abc.(de))
-... R-Optimise  (\abc.(de))
-... R-Optimise   \abc.(de)
-... R-Optimise    (de)
+... R-Optimise -> (\abc.(de))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1218,6 +1210,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Statement optimisation', Is_Explicit=TRUE]
 .. Reduce # Statement optimisation                                                         
+... R-Optimise -> # Statement optimisation                                                         
 ... F-  [L_COMMENTS, '# Statement optimisation', Is_Explicit=TRUE]
 -> # Statement optimisation                                                         
 Unbounded> 
@@ -1244,10 +1237,7 @@ Unbounded>
 ... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-      [L_VARIABLE, d, Is_Explicit=TRUE]
 .. Reduce (?x.(ab(c()d)))
-... R-Optimise  (?x.(ab(c()d)))
-... R-Optimise   ?x.(ab(c()d))
-... R-Optimise    (ab(c()d))
-... R-Optimise     (c()d)
+... R-Optimise -> (?x.(ab(cd)))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1290,10 +1280,7 @@ Unbounded>
 ... F-      [L_VARIABLE, e, Is_Explicit=TRUE]
 ... F-      [L_EXPRESSION, (, Is_Explicit=TRUE]
 .. Reduce ((?x.((abc)de())))
-... R-Optimise   (?x.((abc)de()))
-... R-Optimise    ?x.((abc)de())
-... R-Optimise     ((abc)de())
-... R-Optimise      (abc)
+... R-Optimise -> (?x.((abc)de))
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1331,10 +1318,7 @@ Unbounded>
 ... F-       [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-       [L_VARIABLE, c, Is_Explicit=TRUE]
 .. Reduce ((?x.(a(b()c))))
-... R-Optimise   (?x.(a(b()c)))
-... R-Optimise    ?x.(a(b()c))
-... R-Optimise     (a(b()c))
-... R-Optimise      (b()c)
+... R-Optimise -> (?x.(a(bc)))
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1349,6 +1333,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Standard functions', Is_Explicit=TRUE]
 .. Reduce # Standard functions                                                             
+... R-Optimise -> # Standard functions                                                             
 ... F-  [L_COMMENTS, '# Standard functions', Is_Explicit=TRUE]
 -> # Standard functions                                                             
 Unbounded> 
@@ -1363,9 +1348,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (?x.(x))
-... R-Optimise  (?x.(x))
-... R-Optimise   ?x.(x)
-... R-Optimise    (x)
+... R-Optimise -> (?x.(x))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1384,9 +1367,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (&x.(x))
-... R-Optimise  (&x.(x))
-... R-Optimise   &x.(x)
-... R-Optimise    (x)
+... R-Optimise -> (&x.(x))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1405,9 +1386,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (\x.(x))
-... R-Optimise  (\x.(x))
-... R-Optimise   \x.(x)
-... R-Optimise    (x)
+... R-Optimise -> (\x.(x))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1430,9 +1409,7 @@ Unbounded>
 ... F-     [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce ((?x.(x)))
-... R-Optimise   (?x.(x))
-... R-Optimise    ?x.(x)
-... R-Optimise     (x)
+... R-Optimise -> (?x.(x))
 ... F-  [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1486,16 +1463,7 @@ Unbounded>
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (?f.(?x.(f(xx)))(?x.(f(xx))))
-... R-Optimise  (?f.(?x.(f(xx)))(?x.(f(xx))))
-... R-Optimise   ?f.(?x.(f(xx)))(?x.(f(xx)))
-... R-Optimise    (?x.(f(xx)))
-... R-Optimise     ?x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
-... R-Optimise    (?x.(f(xx)))
-... R-Optimise     ?x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
+... R-Optimise -> (?f.(?x.(f(xx)))(?x.(f(xx))))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
@@ -1563,16 +1531,7 @@ Unbounded>
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (&f.(&x.(f(xx)))(&x.(f(xx))))
-... R-Optimise  (&f.(&x.(f(xx)))(&x.(f(xx))))
-... R-Optimise   &f.(&x.(f(xx)))(&x.(f(xx)))
-... R-Optimise    (&x.(f(xx)))
-... R-Optimise     &x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
-... R-Optimise    (&x.(f(xx)))
-... R-Optimise     &x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
+... R-Optimise -> (&f.(&x.(f(xx)))(&x.(f(xx))))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
@@ -1640,16 +1599,7 @@ Unbounded>
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (\f.(\x.(f(xx)))(\x.(f(xx))))
-... R-Optimise  (\f.(\x.(f(xx)))(\x.(f(xx))))
-... R-Optimise   \f.(\x.(f(xx)))(\x.(f(xx)))
-... R-Optimise    (\x.(f(xx)))
-... R-Optimise     \x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
-... R-Optimise    (\x.(f(xx)))
-... R-Optimise     \x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
+... R-Optimise -> (\f.(\x.(f(xx)))(\x.(f(xx))))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, \, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
@@ -1717,16 +1667,7 @@ Unbounded>
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-        [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (&f.(?x.(f(xx)))(\x.(f(xx))))
-... R-Optimise  (&f.(?x.(f(xx)))(\x.(f(xx))))
-... R-Optimise   &f.(?x.(f(xx)))(\x.(f(xx)))
-... R-Optimise    (?x.(f(xx)))
-... R-Optimise     ?x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
-... R-Optimise    (\x.(f(xx)))
-... R-Optimise     \x.(f(xx))
-... R-Optimise      (f(xx))
-... R-Optimise       (xx)
+... R-Optimise -> (&f.(?x.(f(xx)))(\x.(f(xx))))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, &, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
@@ -1752,6 +1693,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Unbounded variables', Is_Explicit=TRUE]
 .. Reduce # Unbounded variables                                                            
+... R-Optimise -> # Unbounded variables                                                            
 ... F-  [L_COMMENTS, '# Unbounded variables', Is_Explicit=TRUE]
 -> # Unbounded variables                                                            
 Unbounded> 
@@ -1768,9 +1710,7 @@ Unbounded>
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, y, Is_Explicit=TRUE]
 .. Reduce (?x.(xy))
-... R-Optimise  (?x.(xy))
-... R-Optimise   ?x.(xy)
-... R-Optimise    (xy)
+... R-Optimise -> (?x.(xy))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1792,9 +1732,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (?xy.(x))
-... R-Optimise  (?xy.(x))
-... R-Optimise   ?xy.(x)
-... R-Optimise    (x)
+... R-Optimise -> (?xy.(x))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -1803,12 +1741,13 @@ Unbounded>
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 -> (?xy.(x))
 Unbounded> 
-.. Parse # Warning - Null function                                                       
+.. Parse # Warning - Null function - Are these valid Lambda syntax or is this an overkill
 ... P-#
-... F-  [L_COMMENTS, '# Warning - Null function', Is_Explicit=TRUE]
-.. Reduce # Warning - Null function                                                        
-... F-  [L_COMMENTS, '# Warning - Null function', Is_Explicit=TRUE]
--> # Warning - Null function                                                        
+... F-  [L_COMMENTS, '# Warning - Null function - Are these valid Lambda syntax or is this an overkill', Is_Explicit=TRUE]
+.. Reduce # Warning - Null function - Are these valid Lambda syntax or is this an overkill 
+... R-Optimise -> # Warning - Null function - Are these valid Lambda syntax or is this an overkill 
+... F-  [L_COMMENTS, '# Warning - Null function - Are these valid Lambda syntax or is this an overkill', Is_Explicit=TRUE]
+-> # Warning - Null function - Are these valid Lambda syntax or is this an overkill 
 Unbounded> 
 .. Parse ?abc                                                                            
 ... P-Function - Variables
@@ -1825,10 +1764,28 @@ Unbounded>
 ... P-Function - Variables
 LAMBDA.SYNTAX_ERROR: Malformed function declaration in ?(abc)
 Unbounded> 
+.. Parse ?x.()                                                                           
+... P-Function - Variables
+... P- Variable: x
+... P-Function - Expression
+... P- (
+... P- )
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
+.. Reduce (?x.())
+... R-Optimise -> (?x)
+... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
+... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
+... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
+LAMBDA.PROGRAM_ERROR: Malformed function declaration in (?x)
+Unbounded> 
 .. Parse # Syntax error - Missing lambda                                                 
 ... P-#
 ... F-  [L_COMMENTS, '# Syntax error - Missing lambda', Is_Explicit=TRUE]
 .. Reduce # Syntax error - Missing lambda                                                  
+... R-Optimise -> # Syntax error - Missing lambda                                                  
 ... F-  [L_COMMENTS, '# Syntax error - Missing lambda', Is_Explicit=TRUE]
 -> # Syntax error - Missing lambda                                                  
 Unbounded> 
@@ -1840,12 +1797,14 @@ LAMBDA.SYNTAX_ERROR: Unexpected '.' - no function declared in abc.de
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Synonyms                                                                      
 ... P-#
 ... F-  [L_COMMENTS, '# Synonyms', Is_Explicit=TRUE]
 .. Reduce # Synonyms                                                                       
+... R-Optimise -> # Synonyms                                                                       
 ... F-  [L_COMMENTS, '# Synonyms', Is_Explicit=TRUE]
 -> # Synonyms                                                                       
 Unbounded> 
@@ -1853,6 +1812,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 .. Reduce # --------                                                                       
+... R-Optimise -> # --------                                                                       
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
@@ -1860,6 +1820,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Assignment - dummy values', Is_Explicit=TRUE]
 .. Reduce # Assignment - dummy values                                                      
+... R-Optimise -> # Assignment - dummy values                                                      
 ... F-  [L_COMMENTS, '# Assignment - dummy values', Is_Explicit=TRUE]
 -> # Assignment - dummy values                                                      
 Unbounded> 
@@ -1869,7 +1830,7 @@ Unbounded>
 ... F-  [L_DEFINITION, A, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 .. Reduce A=()
-... R-Optimise  A=()
+... R-Optimise -> A=
 ... F-  [L_DEFINITION, A, Is_Explicit=FALSE]
 -> A=
 Unbounded> 
@@ -1891,8 +1852,7 @@ Unbounded>
 ... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 .. Reduce B=(abcdef)
-... R-Optimise  B=(abcdef)
-... R-Optimise   (abcdef)
+... R-Optimise -> B=(abcdef)
 ... F-  [L_DEFINITION, B, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -1927,10 +1887,7 @@ Unbounded>
 ... F-      [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-      [L_VARIABLE, g, Is_Explicit=TRUE]
 .. Reduce C=(?abc.(defg))
-... R-Optimise  C=(?abc.(defg))
-... R-Optimise   (?abc.(defg))
-... R-Optimise    ?abc.(defg)
-... R-Optimise     (defg)
+... R-Optimise -> C=(?abc.(defg))
 ... F-  [L_DEFINITION, C, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
@@ -1952,7 +1909,7 @@ Unbounded>
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_COMMENTS, '# Delete D', Is_Explicit=TRUE]
 .. Reduce D=() # Delete D                                                                       
-... R-Optimise  D=() # Delete D                                                                       
+... R-Optimise -> D= # Delete D                                                                       
 ... F-  [L_DEFINITION, D, Is_Explicit=FALSE]
 ... F-   [L_COMMENTS, '# Delete D', Is_Explicit=TRUE]
 -> D= # Delete D                                                                       
@@ -1965,7 +1922,7 @@ Unbounded>
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_COMMENTS, '# Delete E', Is_Explicit=TRUE]
 .. Reduce E=() # Delete E                                                                       
-... R-Optimise  E=() # Delete E                                                                       
+... R-Optimise -> E= # Delete E                                                                       
 ... F-  [L_DEFINITION, E, Is_Explicit=FALSE]
 ... F-   [L_COMMENTS, '# Delete E', Is_Explicit=TRUE]
 -> E= # Delete E                                                                       
@@ -1991,9 +1948,7 @@ Unbounded>
 ... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 .. Reduce F=((abc)def)
-... R-Optimise  F=((abc)def)
-... R-Optimise   ((abc)def)
-... R-Optimise    (abc)
+... R-Optimise -> F=((abc)def)
 ... F-  [L_DEFINITION, F, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
@@ -2013,8 +1968,7 @@ Unbounded>
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_SYNONYM, H, Is_Explicit=TRUE]
 .. Reduce G=(H)
-... R-Optimise  G=(H)
-... R-Optimise   (H)
+... R-Optimise -> G=(H)
 ... F-  [L_DEFINITION, G, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_SYNONYM, H, Is_Explicit=TRUE]
@@ -2037,9 +1991,7 @@ Unbounded>
 ... F-     [L_VARIABLE, c, Is_Explicit=TRUE]
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 .. Reduce I=(ab(cd))
-... R-Optimise  I=(ab(cd))
-... R-Optimise   (ab(cd))
-... R-Optimise    (cd)
+... R-Optimise -> I=(ab(cd))
 ... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2068,9 +2020,7 @@ Unbounded>
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce J=(ab(cd)e)
-... R-Optimise  J=(ab(cd)e)
-... R-Optimise   (ab(cd)e)
-... R-Optimise    (cd)
+... R-Optimise -> J=(ab(cd)e)
 ... F-  [L_DEFINITION, J, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2105,11 +2055,7 @@ Unbounded>
 ... F-       [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, e, Is_Explicit=TRUE]
 .. Reduce K=(ab(?c.(d))e)
-... R-Optimise  K=(ab(?c.(d))e)
-... R-Optimise   (ab(?c.(d))e)
-... R-Optimise    (?c.(d))
-... R-Optimise     ?c.(d)
-... R-Optimise      (d)
+... R-Optimise -> K=(ab(?c.(d))e)
 ... F-  [L_DEFINITION, K, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2138,8 +2084,7 @@ Unbounded>
 ... F-    [L_VARIABLE, f, Is_Explicit=TRUE]
 ... F-   [L_COMMENTS, '# space reduction', Is_Explicit=TRUE]
 .. Reduce L=(asdf) # space reduction                                                                
-... R-Optimise  L=(asdf) # space reduction                                                                
-... R-Optimise   (asdf)
+... R-Optimise -> L=(asdf) # space reduction                                                                
 ... F-  [L_DEFINITION, L, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2151,12 +2096,14 @@ Unbounded>
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Assignment - standard functions                                               
 ... P-#
 ... F-  [L_COMMENTS, '# Assignment - standard functions', Is_Explicit=TRUE]
 .. Reduce # Assignment - standard functions                                                
+... R-Optimise -> # Assignment - standard functions                                                
 ... F-  [L_COMMENTS, '# Assignment - standard functions', Is_Explicit=TRUE]
 -> # Assignment - standard functions                                                
 Unbounded> 
@@ -2176,10 +2123,7 @@ Unbounded>
 ... F-      [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-   [L_COMMENTS, '# Identity', Is_Explicit=TRUE]
 .. Reduce I=(?x.(x)) # Identity                                                                       
-... R-Optimise  I=(?x.(x)) # Identity                                                                       
-... R-Optimise   (?x.(x))
-... R-Optimise    ?x.(x)
-... R-Optimise     (x)
+... R-Optimise -> I=(?x.(x)) # Identity                                                                       
 ... F-  [L_DEFINITION, I, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
@@ -2240,17 +2184,7 @@ Unbounded>
 ... F-         [L_VARIABLE, x, Is_Explicit=TRUE]
 ... F-   [L_COMMENTS, '# Y Combinator', Is_Explicit=TRUE]
 .. Reduce Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
-... R-Optimise  Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
-... R-Optimise   (?f.(?x.(f(xx)))(?x.(f(xx))))
-... R-Optimise    ?f.(?x.(f(xx)))(?x.(f(xx)))
-... R-Optimise     (?x.(f(xx)))
-... R-Optimise      ?x.(f(xx))
-... R-Optimise       (f(xx))
-... R-Optimise        (xx)
-... R-Optimise     (?x.(f(xx)))
-... R-Optimise      ?x.(f(xx))
-... R-Optimise       (f(xx))
-... R-Optimise        (xx)
+... R-Optimise -> Y=(?f.(?x.(f(xx)))(?x.(f(xx)))) # Y Combinator                                                                   
 ... F-  [L_DEFINITION, Y, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_FUNCTION, ?, Is_Explicit=FALSE]
@@ -2276,12 +2210,14 @@ Unbounded>
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Assignment - statement optimisation                                           
 ... P-#
 ... F-  [L_COMMENTS, '# Assignment - statement optimisation', Is_Explicit=TRUE]
 .. Reduce # Assignment - statement optimisation                                            
+... R-Optimise -> # Assignment - statement optimisation                                            
 ... F-  [L_COMMENTS, '# Assignment - statement optimisation', Is_Explicit=TRUE]
 -> # Assignment - statement optimisation                                            
 Unbounded> 
@@ -2302,8 +2238,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, d, Is_Explicit=TRUE]
 .. Reduce M=(abc()d)
-... R-Optimise  M=(abc()d)
-... R-Optimise   (abc()d)
+... R-Optimise -> M=(abcd)
 ... F-  [L_DEFINITION, M, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2334,8 +2269,7 @@ Unbounded>
 ... F-     [L_VARIABLE, d, Is_Explicit=TRUE]
 ... F-   [L_COMMENTS, '# magical stuff', Is_Explicit=TRUE]
 .. Reduce N=((abc()d)) # magical stuff                                                                  
-... R-Optimise  N=((abc()d)) # magical stuff                                                                  
-... R-Optimise    (abc()d)
+... R-Optimise -> N=(abcd) # magical stuff                                                                  
 ... F-  [L_DEFINITION, N, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2385,11 +2319,7 @@ Unbounded>
 ... F-     [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-      [L_VARIABLE, h, Is_Explicit=TRUE]
 .. Reduce O=((abc(d((e()))f)g(h)))
-... R-Optimise  O=((abc(d((e()))f)g(h)))
-... R-Optimise    (abc(d((e()))f)g(h))
-... R-Optimise     (d((e()))f)
-... R-Optimise       (e())
-... R-Optimise     (h)
+... R-Optimise -> O=(abc(d(e)f)g(h))
 ... F-  [L_DEFINITION, O, Is_Explicit=FALSE]
 ... F-   [L_EXPRESSION, (, Is_Explicit=TRUE]
 ... F-    [L_VARIABLE, a, Is_Explicit=TRUE]
@@ -2407,12 +2337,14 @@ Unbounded>
 Unbounded> 
 .. Parse 
 .. Reduce 
+... R-Optimise -> 
 -> 
 Unbounded> 
 .. Parse # Assignment - bad assignment                                                   
 ... P-#
 ... F-  [L_COMMENTS, '# Assignment - bad assignment', Is_Explicit=TRUE]
 .. Reduce # Assignment - bad assignment                                                    
+... R-Optimise -> # Assignment - bad assignment                                                    
 ... F-  [L_COMMENTS, '# Assignment - bad assignment', Is_Explicit=TRUE]
 -> # Assignment - bad assignment                                                    
 Unbounded> 
@@ -2436,6 +2368,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 .. Reduce # Buffer overflow                                                                
+... R-Optimise -> # Buffer overflow                                                                
 ... F-  [L_COMMENTS, '# Buffer overflow', Is_Explicit=TRUE]
 -> # Buffer overflow                                                                
 Unbounded> 
@@ -2450,9 +2383,7 @@ Unbounded>
 ... F-    [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-     [L_VARIABLE, x, Is_Explicit=TRUE]
 .. Reduce (?x.(x))
-... R-Optimise  (?x.(x))
-... R-Optimise   ?x.(x)
-... R-Optimise    (x)
+... R-Optimise -> (?x.(x))
 ... F-  [L_EXPRESSION, _, Is_Explicit=FALSE]
 ... F-   [L_FUNCTION, ?, Is_Explicit=FALSE]
 ... F-    [L_VARIABLE, x, Is_Explicit=TRUE]
@@ -2478,6 +2409,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# Commands', Is_Explicit=TRUE]
 .. Reduce # Commands                                                                       
+... R-Optimise -> # Commands                                                                       
 ... F-  [L_COMMENTS, '# Commands', Is_Explicit=TRUE]
 -> # Commands                                                                       
 Unbounded> 
@@ -2485,6 +2417,7 @@ Unbounded>
 ... P-#
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 .. Reduce # --------                                                                       
+... R-Optimise -> # --------                                                                       
 ... F-  [L_COMMENTS, '# --------', Is_Explicit=TRUE]
 -> # --------                                                                       
 Unbounded> 
